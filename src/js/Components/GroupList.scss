@@ -1,0 +1,16 @@
+.general {
+   width: 100%;
+   padding: 12px 16px;
+   animation: fadeIn ease-in 1;
+   animation-duration: .2s;
+
+   @keyframes fadeIn {
+      from {
+         opacity: 0;
+      }
+
+      to {
+         opacity: 1;
+      }
+   }
+}

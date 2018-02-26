@@ -178,7 +178,7 @@ class GroupWidget extends Component {
                     }
                     return (
                       <GroupListItem
-                        key={item.id}
+                        key={item.particpantId}
                         participant={participant}
                         flagUrl={flagUrl}
                         outcomes={outcomes}

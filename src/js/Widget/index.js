@@ -51,7 +51,7 @@ class Widget {
   init() {
     return Promise.all([
       KambiService.getGroups(this.filter, this.criterionId),
-      // KambiService.getNextMatchHomeName(this.filter),
+      KambiService.getNextMatchHomeName(this.filter),
     ]).then(([groups, nextMatchHomeName]) => {
       // if (!groups.length) {
       //   console.error('No tournament groups found, widget removing itself')
@@ -80,15 +80,12 @@ class Widget {
       return 0
     }
 
-    for (let i = 0; i < this.groups.length; i++) {
-      const outcome = this.groups[i].betOffers[0].outcomes.find(
-        outcome => outcome.label === this.nextMatchHomeName
-      )
-
-      if (outcome) {
-        return i
+    this.groups.forEach((group, idx) => {
+      const matchInGroup = group.betOffers[0].outcomes.find(outcome => outcome.label === this.nextMatchHomeName)
+      if (matchInGroup) {
+        return idx
       }
-    }
+    })
 
     return 0
   }

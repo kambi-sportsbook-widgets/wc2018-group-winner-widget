@@ -69,7 +69,7 @@ class KambiService {
    */
   static getNextMatchHomeName(filter) {
     return offeringModule
-      .getEventsByFilter(`${filter}/all/matches/`)
+      .getEventsByFilter(`${filter}/all/all/matches`)
       .then(matches => {
         const currentTime = Date.now()
 
@@ -82,7 +82,9 @@ class KambiService {
           )
           .sort((a, b) => a.event.start - b.event.start)
       })
-      .then(matches => (matches.length > 0 ? matches[0].event.homeName : null))
+      .then(matches => {
+        return matches.length > 0 ? matches[0].event.homeName : null
+      })
   }
 }
 

@@ -79,28 +79,49 @@ class GroupWidget extends Component {
     return `${this.flagBaseUrl}${normalisedCountryName}.svg`
   }
 
-  formatData(data) {
-    return data.reduce((arr, group) => {
-      const groupOutcomes = {
-        event: group.event,
-        groupName: group.groupName,
-        betOffers: []
+   /**
+   * Sorts outcomes by lowest odds (handles cases when the reference array contains fewer items than outcomes)
+   * outcomes { array } array of outcomes
+   * referenceArray { array } array of other outcomes to sort against
+   */
+  sortByLowestOdds(outcomes, referenceArray=[]) {
+    // sort using other betoffer as reference
+    if (referenceArray.length > 0) {
+      const ref = referenceArray.map(item => item.participantId)
+      return outcomes.sort((a, b) => {
+        const p1Idx = ref.indexOf(a.participantId)
+        const p2Idx = ref.indexOf(b.participantId)
+        if (p1Idx === -1 && p2Idx === -1) {
+          return a.odds > b.odds
+        } else if (p1Idx === -1) {
+          return 1
+        } else if (p2Idx === -1) {
+        return -1
       }
-      let countries = 0
-      while (countries < group.betOffers[0].outcomes.length) {
-        groupOutcomes.betOffers.push([])
-        countries ++
-      }
-    
-      group.betOffers.forEach(offer => {
-        offer.outcomes.forEach((outcome, idx) => {
-          groupOutcomes.betOffers[idx].push(outcome)
-        })	
+        return ref.indexOf(a.participantId) > ref.indexOf(b.participantId) ? 1 : -1
       })
-      arr.push(groupOutcomes)
-      return arr
-    }, [])
+    }
+    
+    return outcomes.sort((a, b) => a.odds > b.odds)    
   }
+
+  /**
+   * Pairs the betOffer outcomes by participant using participantId
+   * runnerUp { shape } runnerUp to be matched
+   * winnerOdds { array } array of winner outcomes to match against
+   */
+  matchOutcomesByParticipant(runnerUp, winnerOdds) {
+    let outcomes = [null, runnerUp]
+    winnerOdds.forEach(item => {
+      if (runnerUp.participantId === item.participantId) {
+        outcomes = [item, runnerUp]
+      }
+    })
+
+    return outcomes
+  }
+  
+
   /**
    * Renders widget.
    * @returns {XML}
@@ -112,8 +133,6 @@ class GroupWidget extends Component {
         {groups[idx].groupName}
       </div>
     )
-
-    const formattedData = this.formatData(groups)
 
     return (
       <div className={styles.groupWidget}>
@@ -129,33 +148,45 @@ class GroupWidget extends Component {
           onTabChange={onGroupChange}
         >
           {
-            formattedData.map(group => (
-              <GroupList key={group.event.id}>
-                {
-                  group.betOffers.map(offer => {
-                    let flagUrl = null
-                    const participant = offer[0].label.split('(')[0]
-                    const countrySplit = offer[0].englishLabel.split('(')
-                    
-                    if (countrySplit && countrySplit.length > 1 && group.event.groupId === WORLD_CUP_2018_ID) {
-                      flagUrl = this.generateCountryFlagUrl(countrySplit[1].slice(0, countrySplit[1].length -1))
-                    } else if (group.event.groupId === WORLD_CUP_2018_ID) {
-                      flagUrl = this.generateCountryFlagUrl(countrySplit[0])
-                    }
+            groups.map(group => {
+              let winnerOdds = []
+              let runnerUpOdds = []
 
+              // sort outcomes by lowest odds
+              group.betOffers.forEach((offer, idx) => {
+                const offerType = offer.description
+                if (offerType.toLowerCase() === 'winner') {
+                  winnerOdds = this.sortByLowestOdds(group.betOffers[idx].outcomes)
+                } else if (offerType.toLowerCase() === 'top 2') {
+                  runnerUpOdds = this.sortByLowestOdds(group.betOffers[idx].outcomes, winnerOdds)
+                }
+              })
+              
+              // get participant names from runnerUpOdds as it will contain more participants longer
+              const groupParticipants = runnerUpOdds.map(participant => participant.englishLabel)
+
+              return (
+              <GroupList key={group.event.id}>
+                 {
+                   runnerUpOdds.map((item, idx) => {
+                    let flagUrl = null
+                    const participant = groupParticipants[idx]
+                    const outcomes = this.matchOutcomesByParticipant(item, winnerOdds)
+                    if (group.event.groupId === WORLD_CUP_2018_ID) {
+                      flagUrl = this.generateCountryFlagUrl(participant)
+                    }
                     return (
                       <GroupListItem
-                        key={offer[0].participantId}
+                        key={item.id}
                         participant={participant}
                         flagUrl={flagUrl}
-                        outcomes={offer}
+                        outcomes={outcomes}
                         handleClick={() => this.handleListItemClick(group)}
                       />
-                    )
-                  })
-                }
+                    )})
+                  }                   
               </GroupList>
-            ))
+            )})
           }
         </TabPagination>
       </div>

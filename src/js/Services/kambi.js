@@ -52,7 +52,7 @@ class KambiService {
           groupEvent.groupName = groupEvent.event.englishName.match(/Group ([A-Z])/)[1]
           return groupEvent
         })
-        .sort((a, b) => { return a.event.englishName.localeCompare(b.event.englishName)})       
+        .sort((a, b) => { return a.event.englishName.localeCompare(b.event.englishName)})
 
         return Promise.resolve(filteredByCriterionId)
       })

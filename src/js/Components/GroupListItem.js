@@ -32,6 +32,7 @@ const GroupListItem = ({ participant, outcomes, flagUrl, handleClick }) => {
            </span>
            {
                outcomes.map(outcome => (
+                 outcome &&
                   <div className={styles.button}>
                      <OutcomeButton outcome={outcome} label={false} outlineStyle={true} />
                   </div>

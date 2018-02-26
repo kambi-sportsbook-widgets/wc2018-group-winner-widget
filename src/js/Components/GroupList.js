@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import styles from './GroupList.scss'
 
 const GroupList = ({ children }) => (
-  <ul className={styles.general}>{children}</ul>
+  <ul className={styles.general}>
+    {children}
+  </ul>
 )
 
 /**

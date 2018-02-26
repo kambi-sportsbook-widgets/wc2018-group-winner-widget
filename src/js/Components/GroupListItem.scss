@@ -7,9 +7,20 @@
    justify-content: space-between;
    color: #fff;
 
+
+   .participantWrapper {
+      flex-grow: 1;
+      flex-shrink: 0;
+      flex-basis: auto;
+
+      display: flex;
+      flex-wrap: wrap;
+   }
+
    .flag {
       line-height: 1;
       padding-right: 12px;
+      width: 24px;
       flex-grow: 0;
       flex-shrink: 0;
       flex-basis: 36px;
@@ -18,26 +29,23 @@
          width: 24px;
          height: 24px;
       }
-   }
+   }   
 
    .participant {
-      font-size: 14px;
-      flex-grow: 1;
-      flex-shrink: 0;
-      flex-basis: auto;
+      font-size: 14px;      
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
       display: block;
       max-width: 140px;
-      padding-right: 2px;
    }
 
-   .button {
+   .button, .emptyButton {
       flex-grow: 0;
       flex-shrink: 0;
       flex-basis: 60px;
       display: flex;
       height: 36px;
+      margin-left: .5rem;
    }
 }

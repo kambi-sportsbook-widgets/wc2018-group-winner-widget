@@ -91,13 +91,14 @@ class GroupWidget extends Component {
       return outcomes.sort((a, b) => {
         const p1Idx = ref.indexOf(a.participantId)
         const p2Idx = ref.indexOf(b.participantId)
-        if (p1Idx === -1 && p2Idx === -1) {
+
+        if (p1Idx === -1 && p2Idx === -1) { // neither exist in the refArray
           return a.odds > b.odds
-        } else if (p1Idx === -1) {
+        } else if (p1Idx === -1) { // p1 doesn't exist in refArray
           return 1
-        } else if (p2Idx === -1) {
-        return -1
-      }
+        } else if (p2Idx === -1) { // p2 doesn't exist in refArray
+          return -1
+        }
         return ref.indexOf(a.participantId) > ref.indexOf(b.participantId) ? 1 : -1
       })
     }
@@ -156,7 +157,7 @@ class GroupWidget extends Component {
               group.betOffers.forEach((offer, idx) => {
                 const offerType = offer.description
                 if (offerType.toLowerCase() === 'winner') {
-                  winnerOdds = this.sortByLowestOdds(group.betOffers[idx].outcomes)
+                  winnerOdds = this.sortByLowestOdds(group.betOffers[idx].outcomes).slice(0,2)
                 } else if (offerType.toLowerCase() === 'top 2') {
                   runnerUpOdds = this.sortByLowestOdds(group.betOffers[idx].outcomes, winnerOdds)
                 }

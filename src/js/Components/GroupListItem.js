@@ -16,26 +16,30 @@ const GroupListItem = ({ participant, outcomes, flagUrl, handleClick }) => {
    return (
      <div>
         <li className={styles.row}>
-           {
-             flagUrl ? (
-               <div className={styles.flag} onClick={handleClick} ref={(img) => { this.img = img }}>
-                 <img
-                   role="presentation"
-                   src={flagUrl}
-                   onError={() => this.handleBrokenUrl()}
-                 />
-               </div>
-             ) : null
-           }
-           <span className={styles.participant} onClick={handleClick}>
-             {participant}
-           </span>
+          <div className={styles.participantWrapper}>
+            {
+              flagUrl ? (
+                <div className={styles.flag} onClick={handleClick} ref={(img) => { this.img = img }}>
+                  <img
+                    role="presentation"
+                    src={flagUrl}
+                    onError={() => this.handleBrokenUrl()}
+                  />
+                </div>
+              ) : null
+            }
+            <span className={styles.participant} onClick={handleClick}>
+              {participant}
+            </span>
+           </div>
            {
                outcomes.map(outcome => (
-                 outcome &&
+                 outcome ?
                   <div className={styles.button}>
                      <OutcomeButton outcome={outcome} label={false} outlineStyle={true} />
                   </div>
+                  :
+                  <div className={styles.emptyButton} />
                ))
            }
            

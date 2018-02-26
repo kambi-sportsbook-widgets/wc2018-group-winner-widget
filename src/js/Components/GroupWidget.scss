@@ -3,3 +3,9 @@
       background-color: #fff;
    }
 }
+
+.tab {
+   position: absolute;
+   left: 50%;
+   transform: translate3d(-50%, 0, 0);
+}

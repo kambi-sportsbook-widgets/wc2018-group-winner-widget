@@ -57,7 +57,6 @@ class KambiService {
         return Promise.resolve(filteredByCriterionId)
       })
       .catch(err => {
-        widgetModule.removeWidget()
         return Promise.reject(err)
       })
   }

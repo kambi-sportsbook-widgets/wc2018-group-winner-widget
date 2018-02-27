@@ -44,13 +44,18 @@ class GroupWidget extends Component {
    */
   constructor(props) {
     super(props)
-    widgetModule.enableWidgetTransition(true)
-
     this.state = {
-      usingDefaultBackground: props.backgroundUrl === DEFAULT_BACKGROUND
+      usingDefaultBackground: props.backgroundUrl === DEFAULT_BACKGROUND,
+      selected: 0
     }
-
-    this.flagBaseUrl = 'assets/icons/'
+    this.participantsByGroup = props.groups.reduce((groupsObj, group) => {
+      groupsObj[group.groupName] = group.betOffers[group.betOffers.length -1].outcomes.map(outcome => {
+        return [outcome.label, outcome.odds]
+      })
+      return groupsObj
+    }, {})
+    this.title = props.title ? props.title : props.groups[0].event.group
+    this.tagline = props.tagline ? props.tagline : props.groups[0].betOffers[0].criterion.label
   }
 
   /**
@@ -58,6 +63,12 @@ class GroupWidget extends Component {
    */
   componentDidMount() {
     widgetModule.adaptWidgetHeight()
+    widgetModule.enableWidgetTransition(true) 
+
+    // // setup live group polling 
+    // this.props.groups
+    //     .filter(group => group.betOffers[0].live)
+    //     .forEach(this.subscribeToLiveGroup.bind(this))  
   }
 
   /**
@@ -76,7 +87,7 @@ class GroupWidget extends Component {
    */
   generateCountryFlagUrl(country) {
     const normalisedCountryName = country.toLowerCase().replace(/\s/g, '_')
-    return `${this.flagBaseUrl}${normalisedCountryName}.svg`
+    return `${this.props.flagUrl}${normalisedCountryName}.svg`
   }
 
    /**
@@ -121,6 +132,94 @@ class GroupWidget extends Component {
 
     return outcomes
   }
+
+  /**
+   * 
+   * @param {string} nextTeam - most recent homeName from this.nextMatches 
+   * @param {string} comparable - homeName that has same starting time as nextTeam to check against
+   */
+  compareAgainstMostRecent(nextTeam, comparable) {
+    let nextTeamStats
+    let comparableStats
+    Object.keys(this.participantsByGroup).forEach((key, idx) => {
+      const groupMembers = this.participantsByGroup[key]
+      groupMembers.forEach(member => {
+        if (member[0] === nextTeam) {
+          nextTeamStats = { group: key, odds: member[0]}
+        } else if (member[0] === comparable) {
+          comparableStats = { group: key, odds: member[0]}
+        }
+      })
+    })
+
+    if (nextTeamStats.group === comparableStats.group) {
+      return false
+    }
+
+    return nextTeamStats.odds > comparableStats.odds
+  }
+
+  /**
+   * Holds team's home name of closest tournament's match.
+   * @returns {number|null}
+   */
+  get nextMatchGroupIdx() {
+    let selected = 0
+    if (!this.nextMatches) {
+      return selected
+    }
+
+    const mostRecent = this.props.nextMatches[0].event
+    // const mostRecentGroup = this.getParticipantGroup(mostRecent.homeName)
+    // check if multiple games start at same time
+    this.props.nextMatches.forEach((match, idx) => {
+      if (idx > 0 && match.event.start === mostRecent.start) {
+        // check if in the same group and if not - which has the lowest qualifying odds
+        const matchHasLowerOdds = this.compareAgainstMostRecent(mostRecent.homeName, match.event.homeName)
+        if (matchHasLowerOdds) {
+          selected = idx
+        }
+        return
+      }
+      return
+    })
+
+    return selected
+  }
+
+  /**
+   * Removes given group from widget.
+   * @param {object} group Tournament group (event entity)
+   */
+  removeGroup(group) {
+    const idx = this.groups.indexOf(group)
+
+    if (idx > -1) {
+      this.groups.splice(idx, 1)
+    }
+
+    // if (!this.groups.length) {
+    //   this.removeWidget()
+    // }
+  }
+
+  /**
+   * Subscribes given group to live updates.
+   * @param {object} group Tournament group (event entity)
+   */
+  subscribeToLiveGroup(group) {
+    eventsModule.subscribe(`LIVE:EVENT:${group.event.id}`, liveEvent => {
+      liveEvent.betOffers[0].outcomes.sort((a, b) => a.odds - b.odds)
+      group.betOffers = liveEvent.betOffers
+      this.render()
+    })
+
+    eventsModule.subscribe(
+      `LIVE:EVENT:${group.event.id}:REMOVED`,
+      this.removeGroup.bind(this, group)
+    )
+  }
+
   
 
   /**
@@ -139,10 +238,10 @@ class GroupWidget extends Component {
       <div className={styles.groupWidget}>
         <BlendedBackground backgroundUrl={this.props.backgroundUrl} blendWithOperatorColor={this.state.usingDefaultBackground} style={{ zIndex: '-1' }}/>
         
-        <IconHeader title={this.props.title} subtitle={this.props.tagline} />
+        <IconHeader title={this.title} subtitle={this.tagline} />
         <TabPagination
           renderTab={renderTab}
-          selected={this.props.selected}
+          selected={this.state.selected}
           renderTabList={args => (
             <ScrolledList {...args} showControls={!isMobile()} />
           )}
@@ -195,31 +294,18 @@ class GroupWidget extends Component {
   }
 }
 
-GroupWidget.defaultProps = {
-  selected: 0,
-}
 
 GroupWidget.propTypes = {
-  /**
-   * Tournament groups array (event entities)
-   */
   groups: PropTypes.array.isRequired,
-
-  /**
-   * Widget's title
-   */
-  title: PropTypes.string.isRequired,
-
-  /**
-   * Widget's tag line
-   */
-  tagline: PropTypes.string.isRequired,
-
-  /**
-   * Selected group index (default to 0)
-   */
-  selected: PropTypes.number,
-  backgroundUrl: PropTypes.string.isRequired
+  nextMatches: PropTypes.array.isRequired,
+  title: PropTypes.string,
+  tagline: PropTypes.string,
+  backgroundUrl: PropTypes.string,
+  iconUrl: PropTypes.string,
+  flagUrl: PropTypes.string,
+  eventsRefreshInterval: PropTypes.number,
+  pollingCount: PropTypes.number
 }
+
 
 export default GroupWidget

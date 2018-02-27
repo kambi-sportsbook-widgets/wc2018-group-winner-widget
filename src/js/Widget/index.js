@@ -51,16 +51,17 @@ class Widget {
   init() {
     return Promise.all([
       KambiService.getGroups(this.filter, this.criterionId),
-      KambiService.getNextMatchHomeName(this.filter),
-    ]).then(([groups, nextMatchHomeName]) => {
-      // if (!groups.length) {
-      //   console.error('No tournament groups found, widget removing itself')
-      //   this.removeWidget()
-      //   return
-      // }
+      KambiService.getNextMatches(this.filter),
+    ]).then(([groups, nextMatches]) => {
 
       this.groups = groups
-      this.nextMatchHomeName = nextMatchHomeName
+      this.nextMatches = nextMatches
+      this.participantsByGroup = groups.reduce((groupsObj, group) => {
+        groupsObj[group.groupName] = group.betOffers[group.betOffers.length -1].outcomes.map(outcome => {
+          return [outcome.label, outcome.odds]
+        })
+        return groupsObj
+      }, {})
 
       // setup live group polling
       this.groups
@@ -71,23 +72,58 @@ class Widget {
     })
   }
 
+/**
+ * 
+ * @param {string} nextTeam - most recent homeName from this.nextMatches 
+ * @param {string} comparable - homeName that has same starting time as nextTeam to check against
+ */
+  compareAgainstMostRecent(nextTeam, comparable) {
+    let nextTeamStats
+    let comparableStats
+    Object.keys(this.participantsByGroup).forEach((key, idx) => {
+      const groupMembers = this.participantsByGroup[key]
+      groupMembers.forEach(member => {
+        if (member[0] === nextTeam) {
+          nextTeamStats = { group: key, odds: member[0]}
+        } else if (member[0] === comparable) {
+          comparableStats = { group: key, odds: member[0]}
+        }
+      })
+    })
+
+    if (nextTeamStats.group === comparableStats.group) {
+      return false
+    }
+
+    return nextTeamStats.odds > comparableStats.odds
+  }
+
   /**
    * Holds team's home name of closest tournament's match.
    * @returns {number|null}
    */
   get nextMatchGroupIdx() {
-    if (!this.nextMatchHomeName) {
-      return 0
+    let selected = 0
+    if (!this.nextMatches) {
+      return selected
     }
 
-    this.groups.forEach((group, idx) => {
-      const matchInGroup = group.betOffers[0].outcomes.find(outcome => outcome.label === this.nextMatchHomeName)
-      if (matchInGroup) {
-        return idx
+    const mostRecent = this.nextMatches[0].event
+    // const mostRecentGroup = this.getParticipantGroup(mostRecent.homeName)
+    // check if multiple games start at same time
+    this.nextMatches.forEach((match, idx) => {
+      if (idx > 0 && match.event.start === mostRecent.start) {
+        // check if in the same group and if not - which has the lowest qualifying odds
+        const matchHasLowerOdds = this.compareAgainstMostRecent(mostRecent.homeName, match.event.homeName)
+        if (matchHasLowerOdds) {
+          selected = idx
+        }
+        return
       }
+      return
     })
 
-    return 0
+    return selected
   }
 
   /**

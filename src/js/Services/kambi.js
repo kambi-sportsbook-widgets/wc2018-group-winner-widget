@@ -67,7 +67,7 @@ class KambiService {
    * @param {string} filter Tournament's filter
    * @returns {Promise.<string|null>}
    */
-  static getNextMatchHomeName(filter) {
+  static getNextMatches(filter) {
     return offeringModule
       .getEventsByFilter(`${filter}/all/all/matches`)
       .then(matches => {
@@ -83,7 +83,7 @@ class KambiService {
           .sort((a, b) => a.event.start - b.event.start)
       })
       .then(matches => {
-        return matches.length > 0 ? matches[0].event.homeName : null
+        return matches.length > 0 ? matches : null
       })
   }
 }

@@ -5,7 +5,7 @@ import styles from './GroupListItem.scss'
 
 
 
-const GroupListItem = ({ participant, outcomes, flagUrl, handleClick }) => {   
+const GroupListItem = ({ participant, outcomes, flagUrl=null, handleClick }) => {   
    /**
     * Removes images with broken urls
     */   

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { widgetModule } from 'kambi-widget-core-library'
 import {
-  IconHeader,
   ScrolledList,
   TabPagination,
   BlendedBackground
@@ -11,6 +10,7 @@ import isMobile from '../Services/mobile'
 
 import GroupList from './GroupList'
 import GroupListItem from './GroupListItem'
+import IconHeader from './IconHeader'
 import styles from './GroupWidget.scss'
 
 

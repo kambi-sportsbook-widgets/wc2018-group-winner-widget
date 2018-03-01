@@ -238,7 +238,7 @@ class GroupWidget extends Component {
       <div className={styles.groupWidget}>
         <BlendedBackground backgroundUrl={this.props.backgroundUrl} blendWithOperatorColor={this.state.usingDefaultBackground} style={{ zIndex: '-1' }}/>
         
-        <IconHeader title={this.title} subtitle={this.tagline} />
+        <IconHeader title={this.title} subtitle={this.tagline} iconUrl={this.props.iconUrl} />
         <TabPagination
           renderTab={renderTab}
           selected={this.state.selected}

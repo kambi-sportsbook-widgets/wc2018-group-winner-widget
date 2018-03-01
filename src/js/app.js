@@ -21,7 +21,7 @@ import {
     .init({
       widgetTrackingName: 'wc2018-group-winner',
       filter: "/football/world_cup_2018",
-      iconUrl: 'assets/icons/world_cup_2018.svg',
+      iconUrl: 'assets/icons/world_cup_2018_inverted.svg',
       flagUrl: 'assets/icons/',
       backgroundUrl: 'assets/overview-bw-bg-desktop.jpg',
       criterionId: 1004240933,

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Kambi get group services returns events correctly 1`] = `Array []`;
+
+exports[`Kambi getNextMatches returns events correctly 1`] = `null`;

@@ -4,13 +4,14 @@ import { widgetModule } from 'kambi-widget-core-library'
 import {
   ScrolledList,
   TabPagination,
-  BlendedBackground
+  BlendedBackground,
+  IconHeader
 } from 'kambi-widget-components'
 import isMobile from '../Services/mobile'
 
 import GroupList from './GroupList'
 import GroupListItem from './GroupListItem'
-import IconHeader from './IconHeader'
+// import IconHeader from './IconHeader'
 import styles from './GroupWidget.scss'
 
 
@@ -238,7 +239,9 @@ class GroupWidget extends Component {
       <div className={styles.groupWidget}>
         <BlendedBackground backgroundUrl={this.props.backgroundUrl} blendWithOperatorColor={this.state.usingDefaultBackground} style={{ zIndex: '-1' }}/>
         
-        <IconHeader title={this.title} subtitle={this.tagline} iconUrl={this.props.iconUrl} />
+        <IconHeader title={this.title} subtitle={this.tagline} iconUrl={this.props.iconUrl} localStyles={['KambiWidget-primary-background-color', styles.headerIcon]}>
+          {<div style={{backgroundImage: `url(${this.props.iconUrl})`, height: '100%'}} />}
+        </IconHeader>
         <TabPagination
           renderTab={renderTab}
           selected={this.state.selected}

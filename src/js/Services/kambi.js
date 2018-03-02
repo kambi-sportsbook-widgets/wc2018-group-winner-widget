@@ -1,20 +1,6 @@
 import { offeringModule, widgetModule } from 'kambi-widget-core-library'
 
 class KambiService {
-  /**
-   * Checks if given filter exists in current highlights.
-   * @param {string} filter Filter to check
-   * @returns {Promise.<boolean>}
-   */
-  static existsInHighlights(filter) {
-    return offeringModule.getHighlight().then(response => {
-      return !!response.groups.find(group =>
-        group.pathTermId.match(
-          new RegExp(`^/${filter.replace(/\/all/g, '')}(/all)*$`)
-        )
-      )
-    })
-  }
 
   /**
    * Fetches groups for given tournament.
@@ -26,6 +12,9 @@ class KambiService {
     return offeringModule
       .getEventsByFilter(`${filter}/all/all/competitions`)
       .then(competitions => {
+          if (competitions == null) {
+            throw new Error(`No tournament data available for supplied filter: ${filter}/all/all/competitions`)
+          }
           const groupEvents = []
 
           // filter out group events with at least one betOffer and add event request to groupEvents
@@ -70,6 +59,9 @@ class KambiService {
     return offeringModule
       .getEventsByFilter(`${filter}/all/all/matches`)
       .then(matches => {
+        if (matches == null) {
+          throw new Error(`No data available for supplied filter: ${filter}/all/all/matches`)
+        }
         const currentTime = Date.now()
 
         return matches.events

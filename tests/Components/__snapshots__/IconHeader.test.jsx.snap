@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconHeader DOM Rendering renders correctly with default props 1`] = `
+<header
+  className="KambiWidget-card-text-color KambiWidget-card-border-color KambiWidget-font header"
+>
+  
+  <div
+    className="container"
+  >
+    <div
+      className="title"
+      title="World cup 2018"
+    >
+      World cup 2018
+    </div>
+    <div
+      className="subtitle"
+      title="Group finishing position"
+    >
+      Group finishing position
+    </div>
+  </div>
+</header>
+`;
+
+exports[`IconHeader DOM Rendering renders correctly with iconUrl passed 1`] = `
+<header
+  className="KambiWidget-card-text-color KambiWidget-card-border-color KambiWidget-font header"
+>
+  <div
+    className="icon KambiWidget-primary-background-color"
+    style={
+      Object {
+        "backgroundImage": "url(assets/icons/world_cup_2018_inverted.svg)",
+      }
+    }
+  />
+  <div
+    className="container"
+  >
+    <div
+      className="title"
+      title="World cup 2018"
+    >
+      World cup 2018
+    </div>
+    <div
+      className="subtitle"
+      title="Group finishing position"
+    >
+      Group finishing position
+    </div>
+  </div>
+</header>
+`;

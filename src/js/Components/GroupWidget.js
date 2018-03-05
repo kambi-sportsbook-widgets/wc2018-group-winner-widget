@@ -208,18 +208,18 @@ class GroupWidget extends Component {
    * Subscribes given group to live updates.
    * @param {object} group Tournament group (event entity)
    */
-  subscribeToLiveGroup(group) {
-    eventsModule.subscribe(`LIVE:EVENT:${group.event.id}`, liveEvent => {
-      liveEvent.betOffers[0].outcomes.sort((a, b) => a.odds - b.odds)
-      group.betOffers = liveEvent.betOffers
-      this.render()
-    })
+  // subscribeToLiveGroup(group) {
+  //   eventsModule.subscribe(`LIVE:EVENT:${group.event.id}`, liveEvent => {
+  //     liveEvent.betOffers[0].outcomes.sort((a, b) => a.odds - b.odds)
+  //     group.betOffers = liveEvent.betOffers
+  //     this.render()
+  //   })
 
-    eventsModule.subscribe(
-      `LIVE:EVENT:${group.event.id}:REMOVED`,
-      this.removeGroup.bind(this, group)
-    )
-  }
+  //   eventsModule.subscribe(
+  //     `LIVE:EVENT:${group.event.id}:REMOVED`,
+  //     this.removeGroup.bind(this, group)
+  //   )
+  // }
 
   
 
@@ -240,7 +240,7 @@ class GroupWidget extends Component {
         <BlendedBackground backgroundUrl={this.props.backgroundUrl} blendWithOperatorColor={this.state.usingDefaultBackground} style={{ zIndex: '-1' }}/>
         
         <IconHeader title={this.title} subtitle={this.tagline} iconUrl={this.props.iconUrl} localStyles={['KambiWidget-primary-background-color', styles.headerIcon]}>
-          {<div style={{backgroundImage: `url(${this.props.iconUrl})`, height: '100%'}} />}
+          <div style={{backgroundImage: `url(${this.props.iconUrl})`, height: '100%'}} />
         </IconHeader>
         <TabPagination
           renderTab={renderTab}
@@ -280,11 +280,12 @@ class GroupWidget extends Component {
                     }
                     return (
                       <GroupListItem
-                        key={item.particpantId}
+                        key={participant}
                         participant={participant}
                         flagUrl={flagUrl}
                         outcomes={outcomes}
                         handleClick={() => this.handleListItemClick(group)}
+                        event={group.event}
                       />
                     )})
                   }                   

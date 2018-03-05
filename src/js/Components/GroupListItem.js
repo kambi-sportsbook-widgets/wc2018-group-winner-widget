@@ -5,7 +5,7 @@ import styles from './GroupListItem.scss'
 
 
 
-const GroupListItem = ({ participant, outcomes, flagUrl=null, handleClick }) => {   
+const GroupListItem = ({ participant, outcomes, flagUrl=null, handleClick, event }) => {   
    /**
     * Removes images with broken urls
     */   
@@ -36,7 +36,7 @@ const GroupListItem = ({ participant, outcomes, flagUrl=null, handleClick }) => 
                outcomes.map(outcome => (
                  outcome ?
                   <div className={styles.button}>
-                     <OutcomeButton outcome={outcome} label={false} outlineStyle={true} />
+                     <OutcomeButton outcome={outcome} label={false} outlineStyle={true} event={event} />
                   </div>
                   :
                   <div className={styles.emptyButton} />

@@ -31,13 +31,9 @@
   "useHttps": true,
   "dependencies": {
     "kambi-widget-components": "1.18.1",
-    "kambi-widget-core-library": "^4.0.0",
-    "prop-types": "^15.4.1",
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "kambi-widget-core-library": "^4.0.0"
   },
   "devDependencies": {
-    "kambi-widget-build-tools": "^5.0.6",
     "lint-staged": "^6.1.0",
     "prettier": "^1.10.2"
   },

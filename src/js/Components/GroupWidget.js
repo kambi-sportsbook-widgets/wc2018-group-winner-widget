@@ -65,11 +65,6 @@ class GroupWidget extends Component {
   componentDidMount() {
     widgetModule.adaptWidgetHeight()
     widgetModule.enableWidgetTransition(true) 
-
-    // // setup live group polling 
-    // this.props.groups
-    //     .filter(group => group.betOffers[0].live)
-    //     .forEach(this.subscribeToLiveGroup.bind(this))  
   }
 
   /**
@@ -187,40 +182,6 @@ class GroupWidget extends Component {
 
     return selected
   }
-
-  /**
-   * Removes given group from widget.
-   * @param {object} group Tournament group (event entity)
-   */
-  removeGroup(group) {
-    const idx = this.groups.indexOf(group)
-
-    if (idx > -1) {
-      this.groups.splice(idx, 1)
-    }
-
-    // if (!this.groups.length) {
-    //   this.removeWidget()
-    // }
-  }
-
-  /**
-   * Subscribes given group to live updates.
-   * @param {object} group Tournament group (event entity)
-   */
-  // subscribeToLiveGroup(group) {
-  //   eventsModule.subscribe(`LIVE:EVENT:${group.event.id}`, liveEvent => {
-  //     liveEvent.betOffers[0].outcomes.sort((a, b) => a.odds - b.odds)
-  //     group.betOffers = liveEvent.betOffers
-  //     this.render()
-  //   })
-
-  //   eventsModule.subscribe(
-  //     `LIVE:EVENT:${group.event.id}:REMOVED`,
-  //     this.removeGroup.bind(this, group)
-  //   )
-  // }
-
   
 
   /**

@@ -30,8 +30,8 @@
   },
   "useHttps": true,
   "dependencies": {
-    "kambi-widget-components": "1.18.1",
-    "kambi-widget-core-library": "^4.0.0"
+    "kambi-widget-components": "1.18.2",
+    "kambi-widget-core-library": "^4.0.1"
   },
   "devDependencies": {
     "lint-staged": "^6.1.0",

@@ -3,52 +3,65 @@ import PropTypes from 'prop-types'
 import { OutcomeButton } from 'kambi-widget-components'
 import styles from './GroupListItem.scss'
 
+class GroupListItem extends React.Component {
+  /**
+   * Removes images with broken urls
+   */
 
+  handleBrokenUrl = () => {
+    this.img.style.display = 'none'
+  }
 
-const GroupListItem = ({ participant, outcomes, flagUrl=null, handleClick, event }) => {   
-   /**
-    * Removes images with broken urls
-    */   
-   const handleBrokenUrl = () => {
-      this.img.style.display = 'none'
-   }
-   
-   return (
-     <div>
+  render() {
+    const { participant, outcomes, flagUrl, handleClick, event } = this.props
+
+    return (
+      <div>
         <li className={styles.row}>
           <div className={styles.participantWrapper}>
-            {
-              flagUrl ? (
-                <div className={styles.flag} onClick={handleClick} ref={(img) => { this.img = img }}>
-                  <img
-                    role="presentation"
-                    src={flagUrl}
-                    onError={() => this.handleBrokenUrl()}
-                  />
-                </div>
-              ) : null
-            }
+            {flagUrl ? (
+              <div
+                className={styles.flag}
+                onClick={handleClick}
+                ref={img => {
+                  this.img = img
+                }}
+              >
+                <img
+                  role="presentation"
+                  src={flagUrl}
+                  onError={this.handleBrokenUrl}
+                />
+              </div>
+            ) : null}
             <span className={styles.participant} onClick={handleClick}>
               {participant}
             </span>
-           </div>
-           {
-               outcomes.map(outcome => (
-                 outcome ?
-                  <div className={styles.button}>
-                     <OutcomeButton outcome={outcome} label={false} outlineStyle={true} event={event} />
-                  </div>
-                  :
-                  <div className={styles.emptyButton} />
-               ))
-           }
-           
+          </div>
+          {outcomes.map(
+            outcome =>
+              outcome ? (
+                <div className={styles.button}>
+                  <OutcomeButton
+                    outcome={outcome}
+                    label={false}
+                    outlineStyle={true}
+                    event={event}
+                  />
+                </div>
+              ) : (
+                <div className={styles.emptyButton} />
+              )
+          )}
         </li>
-     </div>
-   )
+      </div>
+    )
+  }
 }
 
-
+GroupListItem.defaultProps = {
+  flagUrl: null,
+}
 
 /**
  * participant { node } list item

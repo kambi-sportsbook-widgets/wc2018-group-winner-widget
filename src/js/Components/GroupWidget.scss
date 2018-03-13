@@ -1,15 +1,17 @@
 .groupWidget {
-   header, & > div > div:first-child {
-      background-color: #fff;
-   }
+  header,
+  & > div > div:first-child {
+    background-color: #fff;
+  }
 }
 
 .tab {
-   position: absolute;
-   left: 50%;
-   transform: translate3d(-50%, 0, 0);
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
 }
 
 .headerIcon {
-   border-radius: 50%;
+  border-radius: 50%;
+  background-size: contain;
 }

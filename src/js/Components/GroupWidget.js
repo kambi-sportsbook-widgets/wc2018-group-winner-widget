@@ -5,7 +5,7 @@ import {
   ScrolledList,
   TabPagination,
   BlendedBackground,
-  IconHeader
+  IconHeader,
 } from 'kambi-widget-components'
 import isMobile from '../Services/mobile'
 
@@ -14,8 +14,8 @@ import GroupListItem from './GroupListItem'
 // import IconHeader from './IconHeader'
 import styles from './GroupWidget.scss'
 
-
-const DEFAULT_BACKGROUND = 'assets/overview-bw-bg-desktop.jpg'
+const DEFAULT_BACKGROUND =
+  'https://d1fqgomuxh4f5p.cloudfront.net/tournamentdata/worldcup2018/overview-bw-bg-desktop.jpg'
 const WORLD_CUP_2018_ID = 2000075007
 
 /**
@@ -47,16 +47,20 @@ class GroupWidget extends Component {
     super(props)
     this.state = {
       usingDefaultBackground: props.backgroundUrl === DEFAULT_BACKGROUND,
-      selected: 0
+      selected: 0,
     }
     this.participantsByGroup = props.groups.reduce((groupsObj, group) => {
-      groupsObj[group.groupName] = group.betOffers[group.betOffers.length -1].outcomes.map(outcome => {
+      groupsObj[group.groupName] = group.betOffers[
+        group.betOffers.length - 1
+      ].outcomes.map(outcome => {
         return [outcome.label, outcome.odds]
       })
       return groupsObj
     }, {})
     this.title = props.title ? props.title : props.groups[0].event.group
-    this.tagline = props.tagline ? props.tagline : props.groups[0].betOffers[0].criterion.label
+    this.tagline = props.tagline
+      ? props.tagline
+      : props.groups[0].betOffers[0].criterion.label
   }
 
   /**
@@ -64,7 +68,7 @@ class GroupWidget extends Component {
    */
   componentDidMount() {
     widgetModule.adaptWidgetHeight()
-    widgetModule.enableWidgetTransition(true) 
+    widgetModule.enableWidgetTransition(true)
   }
 
   /**
@@ -86,12 +90,12 @@ class GroupWidget extends Component {
     return `${this.props.flagUrl}${normalisedCountryName}.svg`
   }
 
-   /**
+  /**
    * Sorts outcomes by lowest odds (handles cases when the reference array contains fewer items than outcomes)
    * outcomes { array } array of outcomes
    * referenceArray { array } array of other outcomes to sort against
    */
-  sortByLowestOdds(outcomes, referenceArray=[]) {
+  sortByLowestOdds(outcomes, referenceArray = []) {
     // sort using other betoffer as reference
     if (referenceArray.length > 0) {
       const ref = referenceArray.map(item => item.participantId)
@@ -99,18 +103,23 @@ class GroupWidget extends Component {
         const p1Idx = ref.indexOf(a.participantId)
         const p2Idx = ref.indexOf(b.participantId)
 
-        if (p1Idx === -1 && p2Idx === -1) { // neither exist in the refArray
+        if (p1Idx === -1 && p2Idx === -1) {
+          // neither exist in the refArray
           return a.odds > b.odds
-        } else if (p1Idx === -1) { // p1 doesn't exist in refArray
+        } else if (p1Idx === -1) {
+          // p1 doesn't exist in refArray
           return 1
-        } else if (p2Idx === -1) { // p2 doesn't exist in refArray
+        } else if (p2Idx === -1) {
+          // p2 doesn't exist in refArray
           return -1
         }
-        return ref.indexOf(a.participantId) > ref.indexOf(b.participantId) ? 1 : -1
+        return ref.indexOf(a.participantId) > ref.indexOf(b.participantId)
+          ? 1
+          : -1
       })
     }
-    
-    return outcomes.sort((a, b) => a.odds > b.odds)    
+
+    return outcomes.sort((a, b) => a.odds > b.odds)
   }
 
   /**
@@ -130,8 +139,8 @@ class GroupWidget extends Component {
   }
 
   /**
-   * 
-   * @param {string} nextTeam - most recent homeName from this.nextMatches 
+   *
+   * @param {string} nextTeam - most recent homeName from this.nextMatches
    * @param {string} comparable - homeName that has same starting time as nextTeam to check against
    */
   compareAgainstMostRecent(nextTeam, comparable) {
@@ -141,9 +150,9 @@ class GroupWidget extends Component {
       const groupMembers = this.participantsByGroup[key]
       groupMembers.forEach(member => {
         if (member[0] === nextTeam) {
-          nextTeamStats = { group: key, odds: member[0]}
+          nextTeamStats = { group: key, odds: member[0] }
         } else if (member[0] === comparable) {
-          comparableStats = { group: key, odds: member[0]}
+          comparableStats = { group: key, odds: member[0] }
         }
       })
     })
@@ -171,7 +180,10 @@ class GroupWidget extends Component {
     this.props.nextMatches.forEach((match, idx) => {
       if (idx > 0 && match.event.start === mostRecent.start) {
         // check if in the same group and if not - which has the lowest qualifying odds
-        const matchHasLowerOdds = this.compareAgainstMostRecent(mostRecent.homeName, match.event.homeName)
+        const matchHasLowerOdds = this.compareAgainstMostRecent(
+          mostRecent.homeName,
+          match.event.homeName
+        )
         if (matchHasLowerOdds) {
           selected = idx
         }
@@ -182,7 +194,6 @@ class GroupWidget extends Component {
 
     return selected
   }
-  
 
   /**
    * Renders widget.
@@ -198,10 +209,27 @@ class GroupWidget extends Component {
 
     return (
       <div className={styles.groupWidget}>
-        <BlendedBackground backgroundUrl={this.props.backgroundUrl} blendWithOperatorColor={this.state.usingDefaultBackground} style={{ zIndex: '-1' }}/>
-        
-        <IconHeader title={this.title} subtitle={this.tagline} iconUrl={this.props.iconUrl} localStyles={['KambiWidget-primary-background-color', styles.headerIcon]}>
-          <div style={{backgroundImage: `url(${this.props.iconUrl})`, height: '100%'}} />
+        <BlendedBackground
+          backgroundUrl={this.props.backgroundUrl}
+          blendWithOperatorColor={this.state.usingDefaultBackground}
+          style={{ zIndex: '-1' }}
+        />
+
+        <IconHeader
+          title={this.title}
+          subtitle={this.tagline}
+          iconUrl={this.props.iconUrl}
+          localStyles={[
+            'KambiWidget-primary-background-color',
+            styles.headerIcon,
+          ]}
+        >
+          <div
+            style={{
+              backgroundImage: `url(${this.props.iconUrl})`,
+              height: '100%',
+            }}
+          />
         </IconHeader>
         <TabPagination
           renderTab={renderTab}
@@ -211,54 +239,61 @@ class GroupWidget extends Component {
           )}
           onTabChange={onGroupChange}
         >
-          {
-            groups.map(group => {
-              let winnerOdds = []
-              let runnerUpOdds = []
+          {groups.map(group => {
+            let winnerOdds = []
+            let runnerUpOdds = []
 
-              // sort outcomes by lowest odds
-              group.betOffers.forEach((offer, idx) => {
-                const offerType = offer.description
-                if (offerType.toLowerCase() === 'winner') {
-                  winnerOdds = this.sortByLowestOdds(group.betOffers[idx].outcomes)
-                } else if (offerType.toLowerCase() === 'top 2') {
-                  runnerUpOdds = this.sortByLowestOdds(group.betOffers[idx].outcomes, winnerOdds)
-                }
-              })
-              
-              // get participant names from runnerUpOdds as it will contain more participants longer
-              const groupParticipants = runnerUpOdds.map(participant => participant.englishLabel)
+            // sort outcomes by lowest odds
+            group.betOffers.forEach((offer, idx) => {
+              const offerType = offer.description
+              if (offerType.toLowerCase() === 'winner') {
+                winnerOdds = this.sortByLowestOdds(
+                  group.betOffers[idx].outcomes
+                )
+              } else if (offerType.toLowerCase() === 'top 2') {
+                runnerUpOdds = this.sortByLowestOdds(
+                  group.betOffers[idx].outcomes,
+                  winnerOdds
+                )
+              }
+            })
 
-              return (
+            // get participant names from runnerUpOdds as it will contain more participants longer
+            const groupParticipants = runnerUpOdds.map(
+              participant => participant.englishLabel
+            )
+
+            return (
               <GroupList key={group.event.id}>
-                 {
-                   runnerUpOdds.map((item, idx) => {
-                    let flagUrl = null
-                    const participant = groupParticipants[idx]
-                    const outcomes = this.matchOutcomesByParticipant(item, winnerOdds)
-                    if (group.event.groupId === WORLD_CUP_2018_ID) {
-                      flagUrl = this.generateCountryFlagUrl(participant)
-                    }
-                    return (
-                      <GroupListItem
-                        key={participant}
-                        participant={participant}
-                        flagUrl={flagUrl}
-                        outcomes={outcomes}
-                        handleClick={() => this.handleListItemClick(group)}
-                        event={group.event}
-                      />
-                    )})
-                  }                   
+                {runnerUpOdds.map((item, idx) => {
+                  let flagUrl = null
+                  const participant = groupParticipants[idx]
+                  const outcomes = this.matchOutcomesByParticipant(
+                    item,
+                    winnerOdds
+                  )
+                  if (group.event.groupId === WORLD_CUP_2018_ID) {
+                    flagUrl = this.generateCountryFlagUrl(participant)
+                  }
+                  return (
+                    <GroupListItem
+                      key={participant}
+                      participant={participant}
+                      flagUrl={flagUrl}
+                      outcomes={outcomes}
+                      handleClick={() => this.handleListItemClick(group)}
+                      event={group.event}
+                    />
+                  )
+                })}
               </GroupList>
-            )})
-          }
+            )
+          })}
         </TabPagination>
       </div>
     )
   }
 }
-
 
 GroupWidget.propTypes = {
   groups: PropTypes.array.isRequired,
@@ -269,8 +304,7 @@ GroupWidget.propTypes = {
   iconUrl: PropTypes.string,
   flagUrl: PropTypes.string,
   eventsRefreshInterval: PropTypes.number,
-  pollingCount: PropTypes.number
+  pollingCount: PropTypes.number,
 }
-
 
 export default GroupWidget

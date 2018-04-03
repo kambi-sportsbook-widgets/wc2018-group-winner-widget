@@ -24,9 +24,6 @@ Arguments and default values:
       'https://d1fqgomuxh4f5p.cloudfront.net/tournamentdata/worldcup2018/icons/',
     backgroundUrl:
       'https://d1fqgomuxh4f5p.cloudfront.net/tournamentdata/worldcup2018/overview-bw-bg-desktop.jpg',
-    pollingInterval: 30000,
-    pollingCount: 4,
-    eventsRefreshInterval: 120000,
 }
 ```
 
@@ -35,9 +32,6 @@ Arguments and default values:
 3.  `iconUrl` - String - url path to tournament icon
 4.  `flagUrl` - String - url path to participant flags
 5.  `backGroundUrl` - String - url path to backgroundUrl. Option to provide custom background image for widget. Otherwise, default background will be used.
-6.  `pollingInterval` - number - interval in milliseconds to get new live data from live matches
-7.  `pollingCount` - number - maximum number of matches to poll for live data at the same time
-8.  `eventsRefreshInterval` - number - interval in milliseconds to look for live events
 
 ### Build Instructions
 

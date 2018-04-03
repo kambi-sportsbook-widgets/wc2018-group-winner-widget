@@ -27,9 +27,6 @@ coreLibrary
       'https://d1fqgomuxh4f5p.cloudfront.net/tournamentdata/worldcup2018/icons/',
     backgroundUrl:
       'https://d1fqgomuxh4f5p.cloudfront.net/tournamentdata/worldcup2018/overview-bw-bg-desktop.jpg',
-    pollingInterval: 30000,
-    pollingCount: 4,
-    eventsRefreshInterval: 120000,
     criterionId: 1004240933,
   })
   .then(() => {
@@ -53,8 +50,6 @@ coreLibrary
       tagline,
     } = coreLibrary.args
 
-    eventsModule.liveEventPollingInterval = pollingInterval
-
     return ReactDOM.render(
       <GroupWidget
         groups={groups}
@@ -62,8 +57,6 @@ coreLibrary
         title={title}
         tagline={tagline}
         backgroundUrl={backgroundUrl}
-        pollingCount={pollingCount}
-        eventsRefreshInterval={eventsRefreshInterval}
         iconUrl={iconUrl}
         flagUrl={flagUrl}
       />,

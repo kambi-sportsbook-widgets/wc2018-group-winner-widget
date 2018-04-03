@@ -41,7 +41,7 @@ class GroupListItem extends React.Component {
           {outcomes.map(
             outcome =>
               outcome ? (
-                <div className={styles.button}>
+                <div className={styles.button} key={outcome.id}>
                   <OutcomeButton
                     outcome={outcome}
                     label={false}

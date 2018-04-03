@@ -303,8 +303,6 @@ GroupWidget.propTypes = {
   backgroundUrl: PropTypes.string,
   iconUrl: PropTypes.string,
   flagUrl: PropTypes.string,
-  eventsRefreshInterval: PropTypes.number,
-  pollingCount: PropTypes.number,
 }
 
 export default GroupWidget

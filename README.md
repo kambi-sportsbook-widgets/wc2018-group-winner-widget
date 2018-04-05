@@ -16,14 +16,14 @@ Arguments and default values:
 
 ```json
 "args": {
-    widgetTrackingName: 'wc2018-group-winner',
-    filter: '/football/world_cup_2018',
-    iconUrl:
-      'https://d1fqgomuxh4f5p.cloudfront.net/tournamentdata/worldcup2018/icons/world_cup_2018_inverted.svg',
-    flagUrl:
-      'https://d1fqgomuxh4f5p.cloudfront.net/tournamentdata/worldcup2018/icons/',
-    backgroundUrl:
-      'https://d1fqgomuxh4f5p.cloudfront.net/tournamentdata/worldcup2018/overview-bw-bg-desktop.jpg',
+    "widgetTrackingName": "wc2018-group-winner",
+    "filter": "/football/world_cup_2018",
+    "iconUrl":
+      "https://d1fqgomuxh4f5p.cloudfront.net/tournamentdata/worldcup2018/icons/world_cup_2018_inverted.svg",
+    "flagUrl":
+      "https://d1fqgomuxh4f5p.cloudfront.net/tournamentdata/worldcup2018/icons/",
+    "backgroundUrl":
+      "https://d1fqgomuxh4f5p.cloudfront.net/tournamentdata/worldcup2018/overview-bw-bg-desktop.jpg",
 }
 ```
 

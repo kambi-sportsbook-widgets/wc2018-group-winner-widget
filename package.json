@@ -1,51 +1,53 @@
 {
-  "name": "wc2018-group-winner-widget",
-  "version": "1.1.3",
-  "description": "World Cup 2018 Group Winner Widget",
-  "main": "dist/index.html",
-  "scripts": {
-    "clean": "kambi-widgets-cli clean",
-    "prestart": "npm run clean",
-    "start": "kambi-widgets-cli start",
-    "prebuild": "npm run clean",
-    "build": "kambi-widgets-cli build",
-    "preversion": "kambi-widgets-cli preversion",
-    "postversion": "kambi-widgets-cli postversion",
-    "test": "kambi-widgets-cli test",
-    "prettier-all": "find ./src -name \"*.jsx\" -o -name \"*.js\" | xargs prettier --write",
-    "precommit": "lint-staged"
-  },
-  "prettier": {
-    "tabWidth": 2,
-    "printWidth": 80,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
-  "lint-staged": {
-    "*.{js,json,css}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "devServer": {
-    "https": true
-  },
-  "dependencies": {
-    "kambi-widget-components": "1.18.4",
-    "kambi-widget-core-library": "^4.1.0"
-  },
-  "devDependencies": {
-    "lint-staged": "^6.1.0",
-    "prettier": "^1.10.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/kambi-sportsbook-widgets/wc2018-group-winner-widget.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kambi-sportsbook-widgets/wc2018-group-winner-widget/issues"
-  },
-  "homepage": "https://github.com/kambi-sportsbook-widgets/wc2018-group-winner-widget#readme"
+   "name": "wc2018-group-winner-widget",
+   "version": "1.1.3",
+   "description": "World Cup 2018 Group Winner Widget",
+   "main": "dist/index.html",
+   "scripts": {
+      "clean": "kambi-widgets-cli clean",
+      "prestart": "npm run clean",
+      "start": "kambi-widgets-cli start",
+      "prebuild": "npm run clean",
+      "build": "kambi-widgets-cli build",
+      "preversion": "kambi-widgets-cli preversion",
+      "postversion": "kambi-widgets-cli postversion",
+      "test": "kambi-widgets-cli test",
+      "prettier-all": "find ./src -name \"*.jsx\" -o -name \"*.js\" | xargs prettier --write",
+      "precommit": "lint-staged",
+      "start:embedded": "kambi-widgets-cli start-embedded",
+      "build:embedded": "kambi-widgets-cli build-embedded"
+   },
+   "prettier": {
+      "tabWidth": 2,
+      "printWidth": 80,
+      "semi": false,
+      "singleQuote": true,
+      "trailingComma": "es5"
+   },
+   "lint-staged": {
+      "*.{js,json,css}": [
+         "prettier --write",
+         "git add"
+      ]
+   },
+   "devServer": {
+      "https": true
+   },
+   "dependencies": {
+      "kambi-widget-components": "^1.21.1",
+      "kambi-widget-core-library": "^4.6.2"
+   },
+   "devDependencies": {
+      "lint-staged": "^6.1.0",
+      "prettier": "^1.10.2"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+ssh://git@github.com/kambi-sportsbook-widgets/wc2018-group-winner-widget.git"
+   },
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/kambi-sportsbook-widgets/wc2018-group-winner-widget/issues"
+   },
+   "homepage": "https://github.com/kambi-sportsbook-widgets/wc2018-group-winner-widget#readme"
 }

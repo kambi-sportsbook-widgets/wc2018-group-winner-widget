@@ -16,45 +16,43 @@ class GroupListItem extends React.Component {
     const { participant, outcomes, flagUrl, handleClick, event } = this.props
 
     return (
-      <div>
-        <li className={styles.row}>
-          <div className={styles.participantWrapper}>
-            {flagUrl ? (
-              <div
-                className={styles.flag}
-                onClick={handleClick}
-                ref={img => {
-                  this.img = img
-                }}
-              >
-                <img
-                  role="presentation"
-                  src={flagUrl}
-                  onError={this.handleBrokenUrl}
+      <li className={styles.row}>
+        <div className={styles.participantWrapper}>
+          {flagUrl ? (
+            <div
+              className={styles.flag}
+              onClick={handleClick}
+              ref={img => {
+                this.img = img
+              }}
+            >
+              <img
+                role="presentation"
+                src={flagUrl}
+                onError={this.handleBrokenUrl}
+              />
+            </div>
+          ) : null}
+          <span className={styles.participant} onClick={handleClick}>
+            {participant}
+          </span>
+        </div>
+        {outcomes.map(
+          outcome =>
+            outcome ? (
+              <div className={styles.button} key={outcome.id}>
+                <OutcomeButton
+                  outcome={outcome}
+                  label={false}
+                  outlineStyle={true}
+                  event={event}
                 />
               </div>
-            ) : null}
-            <span className={styles.participant} onClick={handleClick}>
-              {participant}
-            </span>
-          </div>
-          {outcomes.map(
-            outcome =>
-              outcome ? (
-                <div className={styles.button} key={outcome.id}>
-                  <OutcomeButton
-                    outcome={outcome}
-                    label={false}
-                    outlineStyle={true}
-                    event={event}
-                  />
-                </div>
-              ) : (
-                <div className={styles.emptyButton} />
-              )
-          )}
-        </li>
-      </div>
+            ) : (
+              <div className={styles.emptyButton} />
+            )
+        )}
+      </li>
     )
   }
 }

@@ -19,25 +19,10 @@ const DEFAULT_BACKGROUND =
 const WORLD_CUP_2018_ID = 2000075007
 
 /**
- * Navigates to given group (event) page.
- * @param {object} group Tournament group (event entity)
+ *
+ * @class GroupWidget
+ * @extends {Component}
  */
-const onGroupClick = function(group) {
-  if (group.event.openForLiveBetting === true) {
-    widgetModule.navigateToLiveEvent(group.event.id)
-  } else {
-    widgetModule.navigateToEvent(group.event.id)
-  }
-}
-
-/**
- * Called after switching the group.
- * @param {number} idx Group index
- */
-const onGroupChange = function(idx) {
-  widgetModule.adaptWidgetHeight()
-}
-
 class GroupWidget extends Component {
   /**
    * Constructs.
@@ -67,8 +52,18 @@ class GroupWidget extends Component {
    * Called after component mounts
    */
   componentDidMount() {
-    widgetModule.adaptWidgetHeight()
+    this.setHeight()
     widgetModule.enableWidgetTransition(true)
+  }
+
+  /**
+   * used to set the widget height on update and mount
+   *
+   * @memberof GroupWidget
+   */
+  setHeight = () => {
+    const { height } = document.body.getBoundingClientRect()
+    widgetModule.setWidgetHeight(height)
   }
 
   /**
@@ -237,7 +232,7 @@ class GroupWidget extends Component {
           renderTabList={args => (
             <ScrolledList {...args} showControls={!isMobile()} />
           )}
-          onTabChange={onGroupChange}
+          onTabChange={this.setHeight}
         >
           {groups.map(group => {
             let winnerOdds = []

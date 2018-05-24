@@ -60,7 +60,7 @@ coreLibrary
         iconUrl={iconUrl}
         flagUrl={flagUrl}
       />,
-      document.getElementById('root')
+      coreLibrary.rootElement
     )
   })
   .catch(err => {

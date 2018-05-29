@@ -1,13 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { translationModule } from 'kambi-widget-core-library'
 import styles from './GroupList.scss'
+
+const t = translationModule.getTranslation.bind(translationModule)
 
 const GroupList = ({ children }) => (
   <ul className={styles.general}>
-    <li className={styles.headerRow} key='headerRow'>
+    <li className={styles.headerRow} key="headerRow">
       <span className={styles.emptyHeader} />
-      <span className={styles.header}>To Win</span>
-      <span className={styles.header}>To Qualify</span>
+      <span className={styles.header}>{t('win')}</span>
+      <span className={styles.header}>{t('qualify')}</span>
     </li>
     {children}
   </ul>

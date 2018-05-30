@@ -43,10 +43,7 @@
   "tomorrow": "Morgen",
   "wc2018": "WK 2018",
   "russia": "Rusland",
-  "playerSpecial": "Spelerspecial",
-  "more": "Meer wedaanbiedingen",
-  "next": "Volgende ({0})",
-  "prev": "Vorige ({0})",
-  "extraTime": "Verlenging",
-  "highlightedBet": "Uitgelichte weddenschap"
+  "showAllParticipants": "Alle {0} deelnemers tonen",
+  "win": "Wint",
+  "qualify": "Kwalificeert zich"
 }

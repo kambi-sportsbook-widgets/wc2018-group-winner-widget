@@ -43,10 +43,7 @@
   "tomorrow": "I morgen",
   "wc2018": "VM 2018",
   "russia": "Rusland",
-  "playerSpecial": "Spillerspecial",
-  "more": "Flere spil",
-  "next": "Næste ({0})",
-  "prev": "Forrige ({0})",
-  "extraTime": "Forlænget spilletid",
-  "highlightedBet": "Fremhævede spil"
+  "showAllParticipants": "Vis alle {0} deltagere",
+  "win": "Vinder",
+  "qualify": "Kvalificerer sig"
 }

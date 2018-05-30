@@ -43,10 +43,7 @@
   "tomorrow": "Jutro",
   "wc2018": "Puchar Świata 2018",
   "russia": "Rosja",
-  "playerSpecial": "Specjalny",
-  "more": "Więcej ofert zakładów",
-  "next": "Następna ({0})",
-  "prev": "Poprzednia ({0})",
-  "extraTime": "Doliczony czas",
-  "highlightedBet": "Zaznaczony zakład"
+  "showAllParticipants": "Pokaż wszystkich uczestników: {0}",
+  "win": "Zwyciezca",
+  "qualify": "Do kwalifikacji"
 }

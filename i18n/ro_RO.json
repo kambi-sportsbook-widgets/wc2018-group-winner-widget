@@ -43,10 +43,7 @@
   "tomorrow": "Mâine",
   "wc2018": "Cupa Mondială 2018",
   "russia": "Rusia",
-  "playerSpecial": "Speciale Jucător",
-  "more": "Mai multe oferte",
-  "next": "Următorul ({0})",
-  "prev": "Anterior ({0})",
-  "extraTime": "Timp Suplimentar",
-  "highlightedBet": "Pariu Important"
+  "showAllParticipants": "Afișează toți cei {0} participanți",
+  "win": "Va câștiga",
+  "qualify": "Se va califica"
 }

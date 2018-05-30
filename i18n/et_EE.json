@@ -43,10 +43,7 @@
   "tomorrow": "Homme",
   "wc2018": "World Cup 2018",
   "russia": "Venemaa",
-  "playerSpecial": "Mängija eriennustused",
-  "more": "Rohkem ennustamisvõimalusi",
-  "next": "Järgmine ({0})",
-  "prev": "Eelmine ({0})",
-  "extraTime": "Lisaaeg",
-  "highlightedBet": "Esile tõstetud ennustus"
+  "showAllParticipants": "Kuva kõik {0} osalejat",
+  "win": "Võitja",
+  "qualify": "Kvalifitseerub"
 }

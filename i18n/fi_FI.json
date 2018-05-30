@@ -43,10 +43,7 @@
   "tomorrow": "Huomenna",
   "wc2018": "MM 2018",
   "russia": "Venäjä",
-  "playerSpecial": "Pelaajan erikoiskohteet",
-  "more": "Lisää vedonlyöntitarjouksia",
-  "next": "Seuraava ({0})",
-  "prev": "Edellinen ({0})",
-  "extraTime": "Lisäaika",
-  "highlightedBet": "Korostettu veto"
+  "showAllParticipants": "Näytä kaikki {0} osallistujaa",
+  "win": "Voittaja",
+  "qualify": "Selviytyy karsinnoista"
 }

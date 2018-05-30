@@ -43,10 +43,7 @@
   "tomorrow": "Tomorrow",
   "wc2018": "World Cup 2018",
   "russia": "Russia",
-  "playerSpecial": "Player special",
-  "more": "More bet offers",
-  "next": "Next ({0})",
-  "prev": "Prev ({0})",
-  "extraTime": "Extra Time",
-  "highlightedBet": "Highlighted bet"
+  "showAllParticipants": "Show all {0} participants",
+  "win": "To win",
+  "qualify": "To qualify"
 }

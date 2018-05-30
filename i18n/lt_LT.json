@@ -43,10 +43,7 @@
   "tomorrow": "Rytoj",
   "wc2018": "2018 m. pasaulio taurė",
   "russia": "Rusija",
-  "playerSpecial": "žaidėjo specialieji",
-  "more": "Daugiau lažybų pasiūlymų",
-  "next": "Kitas ({0})",
-  "prev": "Ankstesnis ({0})",
-  "extraTime": "Pratęsimas",
-  "highlightedBet": "Svarbiausios lažybos"
+  "showAllParticipants": "Rodytis visus {0} dalyvius",
+  "win": "Laimėtojas",
+  "qualify": "Kvalifikuosis"
 }

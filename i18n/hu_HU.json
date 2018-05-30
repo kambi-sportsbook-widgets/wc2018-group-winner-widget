@@ -43,10 +43,7 @@
   "tomorrow": "Holnap",
   "wc2018": "2018-as labdarúgó világbajnokság",
   "russia": "Oroszország",
-  "playerSpecial": "Játékos jellemzői",
-  "more": "További fogadási ajánlatok",
-  "next": "Következő ({0})",
-  "prev": "Előző ({0})",
-  "extraTime": "Hosszabbítás",
-  "highlightedBet": "Kiemelt fogadás"
+  "showAllParticipants": "Mind a(z) {0} résztvevő megjelenítése",
+  "win": "A nyeréshez",
+  "qualify": "Kvalifikál"
 }

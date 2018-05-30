@@ -43,10 +43,7 @@
   "tomorrow": "Imorgon",
   "wc2018": "VM 2018",
   "russia": "Ryssland",
-  "playerSpecial": "Spelarspecial",
-  "more": "Fler spelerbjudanden",
-  "next": "Nästa ({0})",
-  "prev": "Tidigare ({0})",
-  "extraTime": "Förlängning",
-  "highlightedBet": "Markerat spel"
+  "showAllParticipants": "Visa alla {0} deltagare",
+  "win": "Vinnare",
+  "qualify": "Kvalificerar sig"
 }

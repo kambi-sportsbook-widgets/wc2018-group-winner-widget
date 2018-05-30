@@ -43,10 +43,7 @@
   "tomorrow": "Amanhã",
   "wc2018": "Campeonato do Mundo de 2018",
   "russia": "Rússia",
-  "playerSpecial": "Especial de Jogador",
-  "more": "Mais ofertas de apostas",
-  "next": "Próximo ({0})",
-  "prev": "Anterior ({0})",
-  "extraTime": "Prolongamento",
-  "highlightedBet": "Aposta destacada"
+  "showAllParticipants": "Mostrar todos os {0} participantes",
+  "win": "Vencedor",
+  "qualify": "Para qualificação"
 }

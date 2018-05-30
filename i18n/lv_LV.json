@@ -43,10 +43,7 @@
   "tomorrow": "rītdiena",
   "wc2018": "2018.gada Pasaules kauss",
   "russia": "Krievija",
-  "playerSpecial": "Spēlētājā īpašā likme",
-  "more": "Vairāk likmju",
-  "next": "Nākošā ({0})",
-  "prev": "Iepriekšējā ({0})",
-  "extraTime": "Papildlaiks",
-  "highlightedBet": "Izceltā likme"
+  "showAllParticipants": "Parādīt visus {0} dalībniekus",
+  "win": "Uzvarētājs",
+  "qualify": "Kvalificēsies"
 }

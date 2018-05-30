@@ -43,10 +43,7 @@
   "tomorrow": "Domani",
   "wc2018": "Coppa del mondo 2018",
   "russia": "Russia",
-  "playerSpecial": "Speciale",
-  "more": "Altre scommesse",
-  "next": "Prossimo ({0})",
-  "prev": "Precedente ({0})",
-  "extraTime": "Supplementari",
-  "highlightedBet": "Scommessa in primo piano"
+  "showAllParticipants": "Mostra tutti {0} i partecipanti",
+  "win": "Vince",
+  "qualify": "Si qualifica"
 }

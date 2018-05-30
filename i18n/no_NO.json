@@ -43,10 +43,7 @@
   "tomorrow": "I morgen",
   "wc2018": "Verdensmesterskapet i fotball 2018",
   "russia": "Russland",
-  "playerSpecial": "Spillerspesial",
-  "more": "Flere spill",
-  "next": "Neste ({0})",
-  "prev": "Forrige ({0})",
-  "extraTime": "Overtid",
-  "highlightedBet": "Fremhevet spill"
+  "showAllParticipants": "Vis alle {0} deltakere",
+  "win": "Vinne",
+  "qualify": "Kvalifiserer seg"
 }

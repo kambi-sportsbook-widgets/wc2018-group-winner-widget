@@ -43,10 +43,7 @@
   "tomorrow": "Demain",
   "wc2018": "Coupe du Monde 2018",
   "russia": "Russie",
-  "playerSpecial": "Exclusivités Joueur",
-  "more": "Autres offres de paris",
-  "next": "Suivant ({0})",
-  "prev": "Précédent ({0})",
-  "extraTime": "Prolongations",
-  "highlightedBet": "Pari vedette"
+  "showAllParticipants": "Afficher tous les {0} participants",
+  "win": "Gagne",
+  "qualify": "Se qualifie"
 }

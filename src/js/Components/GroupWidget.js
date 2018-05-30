@@ -254,21 +254,25 @@ class GroupWidget extends Component {
             })
 
             // get participant names from runnerUpOdds as it will contain more participants longer
-            const groupParticipants = runnerUpOdds.map(
-              participant => participant.englishLabel
-            )
+            const groupParticipants = runnerUpOdds.map(participant => {
+              return {
+                english: participant.englishLabel,
+                native: participant.label,
+              }
+            })
 
             return (
               <GroupList key={group.event.id}>
                 {runnerUpOdds.map((item, idx) => {
                   let flagUrl = null
-                  const participant = groupParticipants[idx]
+                  const participant = groupParticipants[idx].native
+                  const participantInEnglish = groupParticipants[idx].english
                   const outcomes = this.matchOutcomesByParticipant(
                     item,
                     winnerOdds
                   )
                   if (group.event.groupId === WORLD_CUP_2018_ID) {
-                    flagUrl = this.generateCountryFlagUrl(participant)
+                    flagUrl = this.generateCountryFlagUrl(participantInEnglish)
                   }
                   return (
                     <GroupListItem

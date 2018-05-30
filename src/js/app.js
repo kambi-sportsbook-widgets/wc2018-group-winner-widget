@@ -60,8 +60,19 @@ coreLibrary
         iconUrl={iconUrl}
         flagUrl={flagUrl}
       />,
-      coreLibrary.rootElement
+      coreLibrary.rootElement,
+      () => {
+        coreLibrary.args.onWidgetLoaded()
+      }
     )
+
+    const originalOnWidgetRemoved = coreLibrary.args.onWidgetRemoved
+    coreLibrary.args.onWidgetRemoved = err => {
+      ReactDOM.unmountComponentAtNode(coreLibrary.rootElement)
+      if (originalOnWidgetRemoved) {
+        originalOnWidgetRemoved(err)
+      }
+    }
   })
   .catch(err => {
     console.error(err)

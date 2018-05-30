@@ -34,7 +34,7 @@
     "https": true
   },
   "dependencies": {
-    "kambi-widget-components": "^1.21.6",
+    "kambi-widget-components": "^1.21.7",
     "kambi-widget-core-library": "^4.8.0"
   },
   "devDependencies": {

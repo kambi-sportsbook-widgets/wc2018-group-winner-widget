@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { OutcomeButton } from 'kambi-widget-components'
+import { coreLibrary } from 'kambi-widget-core-library'
+
 import styles from './GroupListItem.scss'
 
 class GroupListItem extends React.Component {
@@ -14,6 +16,8 @@ class GroupListItem extends React.Component {
 
   render() {
     const { participant, outcomes, flagUrl, handleClick, event } = this.props
+    const isSmallScreen =
+      coreLibrary.rootElement.getBoundingClientRect().width < 375
 
     return (
       <li className={styles.row}>
@@ -33,7 +37,12 @@ class GroupListItem extends React.Component {
               />
             </div>
           ) : null}
-          <span className={styles.participant} onClick={handleClick}>
+          <span
+            className={`${styles.participant} ${
+              isSmallScreen ? styles.participantSmallScreen : ''
+            }`}
+            onClick={handleClick}
+          >
             {participant}
           </span>
         </div>

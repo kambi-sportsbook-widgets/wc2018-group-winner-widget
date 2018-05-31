@@ -15,203 +15,32 @@ exports[`GroupWidget DOM Rendering renders correctly 1`] = `
   />
   <IconHeader
     iconUrl="assets/icons/world_cup_2018_inverted.svg"
+    localStyles={
+      Array [
+        "KambiWidget-primary-background-color",
+        "headerIcon",
+      ]
+    }
     subtitle="Group Finishing Position"
     title="World Cup 2018"
-  />
+  >
+    <div
+      style={
+        Object {
+          "backgroundImage": "url(assets/icons/world_cup_2018_inverted.svg)",
+          "height": "100%",
+        }
+      }
+    />
+  </IconHeader>
   <TabPagination
     onTabChange={[Function]}
     renderTab={[Function]}
     renderTabList={[Function]}
     selected={0}
   >
-    <GroupList>
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Russia",
-              "label": "Russia",
-              "odds": 2100,
-              "participant": "Russia",
-              "participantId": 1000019310,
-            },
-            Object {
-              "englishLabel": "Russia",
-              "label": "Russia",
-              "odds": 1250,
-              "participant": "Russia",
-              "participantId": 1000019310,
-            },
-          ]
-        }
-        participant="Russia"
-      />
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Uruguay",
-              "label": "Uruguay",
-              "odds": 2100,
-              "participant": "Uruguay",
-              "participantId": 1000000155,
-            },
-            Object {
-              "englishLabel": "Uruguay",
-              "label": "Uruguay",
-              "odds": 1180,
-              "participant": "Uruguay",
-              "participantId": 1000000155,
-            },
-          ]
-        }
-        participant="Uruguay"
-      />
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Egypt",
-              "label": "Egypt",
-              "odds": 7000,
-              "participant": "Egypt",
-              "participantId": 1000000256,
-            },
-            Object {
-              "englishLabel": "Egypt",
-              "label": "Egypt",
-              "odds": 2600,
-              "participant": "Egypt",
-              "participantId": 1000000256,
-            },
-          ]
-        }
-        participant="Egypt"
-      />
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Saudi Arabia",
-              "label": "Saudi Arabia",
-              "odds": 51000,
-              "participant": "Saudi Arabia",
-              "participantId": 1000000247,
-            },
-            Object {
-              "englishLabel": "Saudi Arabia",
-              "label": "Saudi Arabia",
-              "odds": 12000,
-              "participant": "Saudi Arabia",
-              "participantId": 1000000247,
-            },
-          ]
-        }
-        participant="Saudi Arabia"
-      />
-    </GroupList>
-    <GroupList>
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Spain",
-              "label": "Spain",
-              "odds": 1500,
-              "participant": "Spain",
-              "participantId": 1000000186,
-            },
-            Object {
-              "englishLabel": "Spain",
-              "label": "Spain",
-              "odds": 1040,
-              "participant": "Spain",
-              "participantId": 1000000186,
-            },
-          ]
-        }
-        participant="Spain"
-      />
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Iran",
-              "label": "Iran",
-              "odds": 3100,
-              "participant": "Iran",
-              "participantId": 1000000248,
-            },
-            Object {
-              "englishLabel": "Iran",
-              "label": "Iran",
-              "odds": 9000,
-              "participant": "Iran",
-              "participantId": 1000000248,
-            },
-          ]
-        }
-        participant="Iran"
-      />
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Portugal",
-              "label": "Portugal",
-              "odds": 3500,
-              "participant": "Portugal",
-              "participantId": 1000000147,
-            },
-            Object {
-              "englishLabel": "Portugal",
-              "label": "Portugal",
-              "odds": 1270,
-              "participant": "Portugal",
-              "participantId": 1000000147,
-            },
-          ]
-        }
-        participant="Portugal"
-      />
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Morocco",
-              "label": "Morocco",
-              "odds": 15000,
-              "participant": "Morocco",
-              "participantId": 1000090431,
-            },
-            Object {
-              "englishLabel": "Morocco",
-              "label": "Morocco",
-              "odds": 4000,
-              "participant": "Morocco",
-              "participantId": 1000090431,
-            },
-          ]
-        }
-        participant="Morocco"
-      />
-    </GroupList>
+    <GroupList />
+    <GroupList />
   </TabPagination>
 </div>
 `;
@@ -231,203 +60,32 @@ exports[`GroupWidget DOM Rendering renders correctly with custom backgroundUrl 1
   />
   <IconHeader
     iconUrl="assets/icons/world_cup_2018_inverted.svg"
+    localStyles={
+      Array [
+        "KambiWidget-primary-background-color",
+        "headerIcon",
+      ]
+    }
     subtitle="Group Finishing Position"
     title="World Cup 2018"
-  />
+  >
+    <div
+      style={
+        Object {
+          "backgroundImage": "url(assets/icons/world_cup_2018_inverted.svg)",
+          "height": "100%",
+        }
+      }
+    />
+  </IconHeader>
   <TabPagination
     onTabChange={[Function]}
     renderTab={[Function]}
     renderTabList={[Function]}
     selected={0}
   >
-    <GroupList>
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Russia",
-              "label": "Russia",
-              "odds": 2100,
-              "participant": "Russia",
-              "participantId": 1000019310,
-            },
-            Object {
-              "englishLabel": "Russia",
-              "label": "Russia",
-              "odds": 1250,
-              "participant": "Russia",
-              "participantId": 1000019310,
-            },
-          ]
-        }
-        participant="Russia"
-      />
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Uruguay",
-              "label": "Uruguay",
-              "odds": 2100,
-              "participant": "Uruguay",
-              "participantId": 1000000155,
-            },
-            Object {
-              "englishLabel": "Uruguay",
-              "label": "Uruguay",
-              "odds": 1180,
-              "participant": "Uruguay",
-              "participantId": 1000000155,
-            },
-          ]
-        }
-        participant="Uruguay"
-      />
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Egypt",
-              "label": "Egypt",
-              "odds": 7000,
-              "participant": "Egypt",
-              "participantId": 1000000256,
-            },
-            Object {
-              "englishLabel": "Egypt",
-              "label": "Egypt",
-              "odds": 2600,
-              "participant": "Egypt",
-              "participantId": 1000000256,
-            },
-          ]
-        }
-        participant="Egypt"
-      />
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Saudi Arabia",
-              "label": "Saudi Arabia",
-              "odds": 51000,
-              "participant": "Saudi Arabia",
-              "participantId": 1000000247,
-            },
-            Object {
-              "englishLabel": "Saudi Arabia",
-              "label": "Saudi Arabia",
-              "odds": 12000,
-              "participant": "Saudi Arabia",
-              "participantId": 1000000247,
-            },
-          ]
-        }
-        participant="Saudi Arabia"
-      />
-    </GroupList>
-    <GroupList>
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Spain",
-              "label": "Spain",
-              "odds": 1500,
-              "participant": "Spain",
-              "participantId": 1000000186,
-            },
-            Object {
-              "englishLabel": "Spain",
-              "label": "Spain",
-              "odds": 1040,
-              "participant": "Spain",
-              "participantId": 1000000186,
-            },
-          ]
-        }
-        participant="Spain"
-      />
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Iran",
-              "label": "Iran",
-              "odds": 3100,
-              "participant": "Iran",
-              "participantId": 1000000248,
-            },
-            Object {
-              "englishLabel": "Iran",
-              "label": "Iran",
-              "odds": 9000,
-              "participant": "Iran",
-              "participantId": 1000000248,
-            },
-          ]
-        }
-        participant="Iran"
-      />
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Portugal",
-              "label": "Portugal",
-              "odds": 3500,
-              "participant": "Portugal",
-              "participantId": 1000000147,
-            },
-            Object {
-              "englishLabel": "Portugal",
-              "label": "Portugal",
-              "odds": 1270,
-              "participant": "Portugal",
-              "participantId": 1000000147,
-            },
-          ]
-        }
-        participant="Portugal"
-      />
-      <GroupListItem
-        flagUrl={null}
-        handleClick={[Function]}
-        outcomes={
-          Array [
-            Object {
-              "englishLabel": "Morocco",
-              "label": "Morocco",
-              "odds": 15000,
-              "participant": "Morocco",
-              "participantId": 1000090431,
-            },
-            Object {
-              "englishLabel": "Morocco",
-              "label": "Morocco",
-              "odds": 4000,
-              "participant": "Morocco",
-              "participantId": 1000090431,
-            },
-          ]
-        }
-        participant="Morocco"
-      />
-    </GroupList>
+    <GroupList />
+    <GroupList />
   </TabPagination>
 </div>
 `;

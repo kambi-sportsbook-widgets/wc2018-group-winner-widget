@@ -240,12 +240,12 @@ class GroupWidget extends Component {
 
             // sort outcomes by lowest odds
             group.betOffers.forEach((offer, idx) => {
-              const offerType = offer.description
-              if (offerType.toLowerCase() === 'winner') {
+              const offerType = offer.to
+              if (offerType === 1) {
                 winnerOdds = this.sortByLowestOdds(
                   group.betOffers[idx].outcomes
                 )
-              } else if (offerType.toLowerCase() === 'top 2') {
+              } else if (offerType === 2) {
                 runnerUpOdds = this.sortByLowestOdds(
                   group.betOffers[idx].outcomes,
                   winnerOdds

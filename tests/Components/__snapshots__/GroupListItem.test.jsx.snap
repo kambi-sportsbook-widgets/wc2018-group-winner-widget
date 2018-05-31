@@ -1,299 +1,339 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GroupListItem DOM Rendering handles a broken imgLink correctly 1`] = `
-<div>
-  <li
-    className="row"
+<li
+  className="row"
+>
+  <div
+    className="participantWrapper"
   >
     <div
-      className="participantWrapper"
+      className="flag"
+      onClick={[MockFunction]}
     >
-      <div
-        className="flag"
-        onClick={[MockFunction]}
-      >
-        <img
-          onError={[Function]}
-          role="presentation"
-          src="assets/icons/incorrecturl.svg"
-        />
-      </div>
-      <span
-        className="participant"
-        onClick={[MockFunction]}
-      >
-        Uruguay
-      </span>
-    </div>
-    <div
-      className="button"
-    >
-      <OutcomeButton
-        label={false}
-        outcome={
-          Object {
-            "betOfferId": 2104811235,
-            "changedDate": "2018-02-07T11:55:05Z",
-            "englishLabel": "Uruguay",
-            "id": 2373848420,
-            "label": "Uruguay",
-            "odds": 2100,
-            "oddsAmerican": "110",
-            "oddsFractional": "11/10",
-            "participant": "Uruguay",
-            "participantId": 1000000155,
-            "status": "OPEN",
-            "type": "OT_UNTYPED",
-          }
-        }
-        outlineStyle={true}
+      <img
+        onError={[Function]}
+        role="presentation"
+        src="assets/icons/incorrecturl.svg"
       />
     </div>
-    <div
-      className="button"
+    <span
+      className="participant"
+      onClick={[MockFunction]}
     >
-      <OutcomeButton
-        label={false}
-        outcome={
-          Object {
-            "betOfferId": 2104811236,
-            "changedDate": "2018-02-07T11:55:05Z",
-            "englishLabel": "Uruguay",
-            "id": 2373848422,
-            "label": "Uruguay",
-            "odds": 1180,
-            "oddsAmerican": "-590",
-            "oddsFractional": "1/6",
-            "participant": "Uruguay",
-            "participantId": 1000000155,
-            "status": "OPEN",
-            "type": "OT_UNTYPED",
-          }
+      Uruguay
+    </span>
+  </div>
+  <div
+    className="button"
+  >
+    <OutcomeButton
+      betslipDefaultStake={null}
+      betslipTrackingName={null}
+      betslipUpdateMode={null}
+      event={undefined}
+      label={false}
+      onSelection={null}
+      outcome={
+        Object {
+          "betOfferId": 2104811235,
+          "changedDate": "2018-02-07T11:55:05Z",
+          "englishLabel": "Uruguay",
+          "id": 2373848420,
+          "label": "Uruguay",
+          "odds": 2100,
+          "oddsAmerican": "110",
+          "oddsFractional": "11/10",
+          "participant": "Uruguay",
+          "participantId": 1000000155,
+          "status": "OPEN",
+          "type": "OT_UNTYPED",
         }
-        outlineStyle={true}
-      />
-    </div>
-  </li>
-</div>
+      }
+      outlineStyle={true}
+      updateOdds={false}
+    />
+  </div>
+  <div
+    className="button"
+  >
+    <OutcomeButton
+      betslipDefaultStake={null}
+      betslipTrackingName={null}
+      betslipUpdateMode={null}
+      event={undefined}
+      label={false}
+      onSelection={null}
+      outcome={
+        Object {
+          "betOfferId": 2104811236,
+          "changedDate": "2018-02-07T11:55:05Z",
+          "englishLabel": "Uruguay",
+          "id": 2373848422,
+          "label": "Uruguay",
+          "odds": 1180,
+          "oddsAmerican": "-590",
+          "oddsFractional": "1/6",
+          "participant": "Uruguay",
+          "participantId": 1000000155,
+          "status": "OPEN",
+          "type": "OT_UNTYPED",
+        }
+      }
+      outlineStyle={true}
+      updateOdds={false}
+    />
+  </div>
+</li>
 `;
 
 exports[`GroupListItem DOM Rendering handles only receiving one outcome per participant 1`] = `
-<div>
-  <li
-    className="row"
+<li
+  className="row"
+>
+  <div
+    className="participantWrapper"
   >
     <div
-      className="participantWrapper"
+      className="flag"
+      onClick={[MockFunction]}
     >
-      <div
-        className="flag"
-        onClick={[MockFunction]}
-      >
-        <img
-          onError={[Function]}
-          role="presentation"
-          src="assets/icons/incorrecturl.svg"
-        />
-      </div>
-      <span
-        className="participant"
-        onClick={[MockFunction]}
-      >
-        Uruguay
-      </span>
-    </div>
-    <div
-      className="button"
-    >
-      <OutcomeButton
-        label={false}
-        outcome={
-          Object {
-            "betOfferId": 2104811235,
-            "changedDate": "2018-02-07T11:55:05Z",
-            "englishLabel": "Uruguay",
-            "id": 2373848420,
-            "label": "Uruguay",
-            "odds": 2100,
-            "oddsAmerican": "110",
-            "oddsFractional": "11/10",
-            "participant": "Uruguay",
-            "participantId": 1000000155,
-            "status": "OPEN",
-            "type": "OT_UNTYPED",
-          }
-        }
-        outlineStyle={true}
+      <img
+        onError={[Function]}
+        role="presentation"
+        src="assets/icons/incorrecturl.svg"
       />
     </div>
-    <div
-      className="button"
+    <span
+      className="participant"
+      onClick={[MockFunction]}
     >
-      <OutcomeButton
-        label={false}
-        outcome={
-          Object {
-            "betOfferId": 2104811236,
-            "changedDate": "2018-02-07T11:55:05Z",
-            "englishLabel": "Uruguay",
-            "id": 2373848422,
-            "label": "Uruguay",
-            "odds": 1180,
-            "oddsAmerican": "-590",
-            "oddsFractional": "1/6",
-            "participant": "Uruguay",
-            "participantId": 1000000155,
-            "status": "OPEN",
-            "type": "OT_UNTYPED",
-          }
+      Uruguay
+    </span>
+  </div>
+  <div
+    className="button"
+  >
+    <OutcomeButton
+      betslipDefaultStake={null}
+      betslipTrackingName={null}
+      betslipUpdateMode={null}
+      event={undefined}
+      label={false}
+      onSelection={null}
+      outcome={
+        Object {
+          "betOfferId": 2104811235,
+          "changedDate": "2018-02-07T11:55:05Z",
+          "englishLabel": "Uruguay",
+          "id": 2373848420,
+          "label": "Uruguay",
+          "odds": 2100,
+          "oddsAmerican": "110",
+          "oddsFractional": "11/10",
+          "participant": "Uruguay",
+          "participantId": 1000000155,
+          "status": "OPEN",
+          "type": "OT_UNTYPED",
         }
-        outlineStyle={true}
-      />
-    </div>
-  </li>
-</div>
+      }
+      outlineStyle={true}
+      updateOdds={false}
+    />
+  </div>
+  <div
+    className="button"
+  >
+    <OutcomeButton
+      betslipDefaultStake={null}
+      betslipTrackingName={null}
+      betslipUpdateMode={null}
+      event={undefined}
+      label={false}
+      onSelection={null}
+      outcome={
+        Object {
+          "betOfferId": 2104811236,
+          "changedDate": "2018-02-07T11:55:05Z",
+          "englishLabel": "Uruguay",
+          "id": 2373848422,
+          "label": "Uruguay",
+          "odds": 1180,
+          "oddsAmerican": "-590",
+          "oddsFractional": "1/6",
+          "participant": "Uruguay",
+          "participantId": 1000000155,
+          "status": "OPEN",
+          "type": "OT_UNTYPED",
+        }
+      }
+      outlineStyle={true}
+      updateOdds={false}
+    />
+  </div>
+</li>
 `;
 
 exports[`GroupListItem DOM Rendering renders correctly 1`] = `
-<div>
-  <li
-    className="row"
+<li
+  className="row"
+>
+  <div
+    className="participantWrapper"
   >
     <div
-      className="participantWrapper"
+      className="flag"
+      onClick={[MockFunction]}
     >
-      <div
-        className="flag"
-        onClick={[MockFunction]}
-      >
-        <img
-          onError={[Function]}
-          role="presentation"
-          src="assets/icons/uruguay.svg"
-        />
-      </div>
-      <span
-        className="participant"
-        onClick={[MockFunction]}
-      >
-        Uruguay
-      </span>
-    </div>
-    <div
-      className="button"
-    >
-      <OutcomeButton
-        label={false}
-        outcome={
-          Object {
-            "betOfferId": 2104811235,
-            "changedDate": "2018-02-07T11:55:05Z",
-            "englishLabel": "Uruguay",
-            "id": 2373848420,
-            "label": "Uruguay",
-            "odds": 2100,
-            "oddsAmerican": "110",
-            "oddsFractional": "11/10",
-            "participant": "Uruguay",
-            "participantId": 1000000155,
-            "status": "OPEN",
-            "type": "OT_UNTYPED",
-          }
-        }
-        outlineStyle={true}
+      <img
+        onError={[Function]}
+        role="presentation"
+        src="assets/icons/uruguay.svg"
       />
     </div>
-    <div
-      className="button"
+    <span
+      className="participant"
+      onClick={[MockFunction]}
     >
-      <OutcomeButton
-        label={false}
-        outcome={
-          Object {
-            "betOfferId": 2104811236,
-            "changedDate": "2018-02-07T11:55:05Z",
-            "englishLabel": "Uruguay",
-            "id": 2373848422,
-            "label": "Uruguay",
-            "odds": 1180,
-            "oddsAmerican": "-590",
-            "oddsFractional": "1/6",
-            "participant": "Uruguay",
-            "participantId": 1000000155,
-            "status": "OPEN",
-            "type": "OT_UNTYPED",
-          }
+      Uruguay
+    </span>
+  </div>
+  <div
+    className="button"
+  >
+    <OutcomeButton
+      betslipDefaultStake={null}
+      betslipTrackingName={null}
+      betslipUpdateMode={null}
+      event={undefined}
+      label={false}
+      onSelection={null}
+      outcome={
+        Object {
+          "betOfferId": 2104811235,
+          "changedDate": "2018-02-07T11:55:05Z",
+          "englishLabel": "Uruguay",
+          "id": 2373848420,
+          "label": "Uruguay",
+          "odds": 2100,
+          "oddsAmerican": "110",
+          "oddsFractional": "11/10",
+          "participant": "Uruguay",
+          "participantId": 1000000155,
+          "status": "OPEN",
+          "type": "OT_UNTYPED",
         }
-        outlineStyle={true}
-      />
-    </div>
-  </li>
-</div>
+      }
+      outlineStyle={true}
+      updateOdds={false}
+    />
+  </div>
+  <div
+    className="button"
+  >
+    <OutcomeButton
+      betslipDefaultStake={null}
+      betslipTrackingName={null}
+      betslipUpdateMode={null}
+      event={undefined}
+      label={false}
+      onSelection={null}
+      outcome={
+        Object {
+          "betOfferId": 2104811236,
+          "changedDate": "2018-02-07T11:55:05Z",
+          "englishLabel": "Uruguay",
+          "id": 2373848422,
+          "label": "Uruguay",
+          "odds": 1180,
+          "oddsAmerican": "-590",
+          "oddsFractional": "1/6",
+          "participant": "Uruguay",
+          "participantId": 1000000155,
+          "status": "OPEN",
+          "type": "OT_UNTYPED",
+        }
+      }
+      outlineStyle={true}
+      updateOdds={false}
+    />
+  </div>
+</li>
 `;
 
 exports[`GroupListItem DOM Rendering renders correctly withouth flagUrl 1`] = `
-<div>
-  <li
-    className="row"
+<li
+  className="row"
+>
+  <div
+    className="participantWrapper"
   >
-    <div
-      className="participantWrapper"
+    <span
+      className="participant"
+      onClick={[MockFunction]}
     >
-      <span
-        className="participant"
-        onClick={[MockFunction]}
-      >
-        Uruguay
-      </span>
-    </div>
-    <div
-      className="button"
-    >
-      <OutcomeButton
-        label={false}
-        outcome={
-          Object {
-            "betOfferId": 2104811235,
-            "changedDate": "2018-02-07T11:55:05Z",
-            "englishLabel": "Uruguay",
-            "id": 2373848420,
-            "label": "Uruguay",
-            "odds": 2100,
-            "oddsAmerican": "110",
-            "oddsFractional": "11/10",
-            "participant": "Uruguay",
-            "participantId": 1000000155,
-            "status": "OPEN",
-            "type": "OT_UNTYPED",
-          }
+      Uruguay
+    </span>
+  </div>
+  <div
+    className="button"
+  >
+    <OutcomeButton
+      betslipDefaultStake={null}
+      betslipTrackingName={null}
+      betslipUpdateMode={null}
+      event={undefined}
+      label={false}
+      onSelection={null}
+      outcome={
+        Object {
+          "betOfferId": 2104811235,
+          "changedDate": "2018-02-07T11:55:05Z",
+          "englishLabel": "Uruguay",
+          "id": 2373848420,
+          "label": "Uruguay",
+          "odds": 2100,
+          "oddsAmerican": "110",
+          "oddsFractional": "11/10",
+          "participant": "Uruguay",
+          "participantId": 1000000155,
+          "status": "OPEN",
+          "type": "OT_UNTYPED",
         }
-        outlineStyle={true}
-      />
-    </div>
-    <div
-      className="button"
-    >
-      <OutcomeButton
-        label={false}
-        outcome={
-          Object {
-            "betOfferId": 2104811236,
-            "changedDate": "2018-02-07T11:55:05Z",
-            "englishLabel": "Uruguay",
-            "id": 2373848422,
-            "label": "Uruguay",
-            "odds": 1180,
-            "oddsAmerican": "-590",
-            "oddsFractional": "1/6",
-            "participant": "Uruguay",
-            "participantId": 1000000155,
-            "status": "OPEN",
-            "type": "OT_UNTYPED",
-          }
+      }
+      outlineStyle={true}
+      updateOdds={false}
+    />
+  </div>
+  <div
+    className="button"
+  >
+    <OutcomeButton
+      betslipDefaultStake={null}
+      betslipTrackingName={null}
+      betslipUpdateMode={null}
+      event={undefined}
+      label={false}
+      onSelection={null}
+      outcome={
+        Object {
+          "betOfferId": 2104811236,
+          "changedDate": "2018-02-07T11:55:05Z",
+          "englishLabel": "Uruguay",
+          "id": 2373848422,
+          "label": "Uruguay",
+          "odds": 1180,
+          "oddsAmerican": "-590",
+          "oddsFractional": "1/6",
+          "participant": "Uruguay",
+          "participantId": 1000000155,
+          "status": "OPEN",
+          "type": "OT_UNTYPED",
         }
-        outlineStyle={true}
-      />
-    </div>
-  </li>
-</div>
+      }
+      outlineStyle={true}
+      updateOdds={false}
+    />
+  </div>
+</li>
 `;

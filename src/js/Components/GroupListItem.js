@@ -17,7 +17,7 @@ class GroupListItem extends React.Component {
   render() {
     const { participant, outcomes, flagUrl, handleClick, event } = this.props
     const isSmallScreen =
-      coreLibrary.rootElement.getBoundingClientRect().width < 375
+      coreLibrary.rootElement.getBoundingClientRect().width < 325
 
     return (
       <li className={styles.row}>

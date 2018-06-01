@@ -1,7 +1,6 @@
 import { offeringModule, widgetModule } from 'kambi-widget-core-library'
 
 class KambiService {
-
   /**
    * Fetches groups for given tournament.
    * @param {string} filter Tournament's filter
@@ -12,36 +11,46 @@ class KambiService {
     return offeringModule
       .getEventsByFilter(`${filter}/all/all/competitions`)
       .then(competitions => {
-          if (competitions == null) {
-            throw new Error(`No tournament data available for supplied filter: ${filter}/all/all/competitions`)
-          }
-          const groupEvents = []
+        if (competitions == null) {
+          throw new Error(
+            `No tournament data available for supplied filter: ${filter}/all/all/competitions`
+          )
+        }
+        const groupEvents = []
 
-          // filter out group events with at least one betOffer and add event request to groupEvents
-          const filteredEvents = competitions.events
-            .filter(event => {
-              const isGroupEvent = event.event.englishName.match(/Group ([A-Z])/)
-              const hasBetOffers = event.betOffers && event.betOffers.length > 0
-              return isGroupEvent && hasBetOffers
-            })
-            .forEach(event => {
-              groupEvents.push(offeringModule.getEvent(event.event.id))
-            })
-          
-            
-          return Promise.all(groupEvents)
+        // filter out group events with at least one betOffer and add event request to groupEvents
+        const filteredEvents = competitions.events
+          .filter(event => {
+            const isGroupEvent = event.event.englishName.match(/Group ([A-Z])/)
+            const hasBetOffers = event.betOffers && event.betOffers.length > 0
+            return isGroupEvent && hasBetOffers
+          })
+          .forEach(event => {
+            groupEvents.push(offeringModule.getEvent(event.event.id))
+          })
+
+        return Promise.all(groupEvents)
       })
       .then(groupEvents => {
         // filter betOffers by criterionId and sort groups by name
         const filteredByCriterionId = groupEvents
-        .map(groupEvent => {
-          groupEvent.betOffers = groupEvent.betOffers.filter(betOffer => {
-            return betOffer.criterion.id === criterionId
+          .map(groupEvent => {
+            groupEvent.betOffers = groupEvent.betOffers.filter(betOffer => {
+              return betOffer.criterion.id === criterionId
+            })
+            groupEvent.groupName = groupEvent.event.englishName.match(
+              /Group ([A-Z])/
+            )[1]
+
+            if (groupEvent.betOffers.length < 2 || !groupEvent.groupName) {
+              throw new Error('Could not find matching betoffers or group name')
+              return
+            }
+            return groupEvent
           })
-          groupEvent.groupName = groupEvent.event.englishName.match(/Group ([A-Z])/)[1]
-          return groupEvent
-        })
-        .sort((a, b) => { return a.event.englishName.localeCompare(b.event.englishName)})
+          .sort((a, b) => {
+            return a.event.englishName.localeCompare(b.event.englishName)
+          })
 
         return Promise.resolve(filteredByCriterionId)
       })
@@ -60,7 +69,9 @@ class KambiService {
       .getEventsByFilter(`${filter}/all/all/matches`)
       .then(matches => {
         if (matches == null) {
-          throw new Error(`No data available for supplied filter: ${filter}/all/all/matches`)
+          throw new Error(
+            `No data available for supplied filter: ${filter}/all/all/matches`
+          )
         }
         const currentTime = Date.now()
 

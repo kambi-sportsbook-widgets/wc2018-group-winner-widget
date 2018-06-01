@@ -8,9 +8,9 @@ const t = translationModule.getTranslation.bind(translationModule)
 const GroupList = ({ children }) => (
   <ul className={styles.general}>
     <li className={styles.headerRow} key="headerRow">
-      <p className={styles.emptyHeader} />
-      <p className={styles.header}>{t('win')}</p>
-      <p className={styles.header}>{t('qualify')}</p>
+      <span className={styles.emptyHeader} />
+      <span className={styles.header}>{t('win')}</span>
+      <span className={styles.header}>{t('qualify')}</span>
     </li>
     {children}
   </ul>

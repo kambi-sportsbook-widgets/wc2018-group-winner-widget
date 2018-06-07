@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { widgetModule } from 'kambi-widget-core-library'
 import {
@@ -6,6 +6,7 @@ import {
   TabPagination,
   BlendedBackground,
   IconHeader,
+  ArrowButton,
 } from 'kambi-widget-components'
 import isMobile from '../Services/mobile'
 
@@ -229,9 +230,15 @@ class GroupWidget extends Component {
         <TabPagination
           renderTab={renderTab}
           selected={this.state.selected}
-          renderTabList={args => (
-            <ScrolledList {...args} showControls={!isMobile()} />
-          )}
+          renderTabList={args => {
+            return (
+              <ScrolledList
+                {...args}
+                showControls={!isMobile()}
+                arrowButtonBackground="#fff"
+              />
+            )
+          }}
           onTabChange={this.setHeight}
         >
           {groups.map(group => {

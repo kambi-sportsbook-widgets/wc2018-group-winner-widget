@@ -5,6 +5,7 @@ import {
   eventsModule,
   widgetModule,
 } from 'kambi-widget-core-library'
+import { setConfigValues, getConfigValues } from 'kambi-offering-api-module'
 import kambi from './Services/kambi'
 import GroupWidget from './Components/GroupWidget'
 
@@ -31,6 +32,9 @@ coreLibrary
   })
   .then(() => {
     const { filter, criterionId } = coreLibrary.args
+
+    // set config values from coreLibrary
+    setConfigValues(coreLibrary.config)
 
     return Promise.all([
       kambi.getGroups(filter, criterionId),

@@ -1,4 +1,4 @@
-import { offeringModule, widgetModule } from 'kambi-widget-core-library'
+import { getEventsByFilter, getEvent } from 'kambi-offering-api-module'
 
 class KambiService {
   /**
@@ -8,8 +8,7 @@ class KambiService {
    * @returns {Promise.<object[]>}
    */
   static getGroups(filter, criterionId) {
-    return offeringModule
-      .getEventsByFilter(`${filter}/all/all/competitions`)
+    return getEventsByFilter(`${filter}/all/all/competitions`)
       .then(competitions => {
         if (competitions == null) {
           throw new Error(
@@ -26,7 +25,7 @@ class KambiService {
             return isGroupEvent && hasBetOffers
           })
           .forEach(event => {
-            groupEvents.push(offeringModule.getEvent(event.event.id))
+            groupEvents.push(getEvent(event.event.id))
           })
 
         return Promise.all(groupEvents)
@@ -65,24 +64,25 @@ class KambiService {
    * @returns {Promise.<string|null>}
    */
   static getNextMatches(filter) {
-    return offeringModule
-      .getEventsByFilter(`${filter}/all/all/matches`)
+    return getEventsByFilter(`${filter}/all/all/matches`)
       .then(matches => {
         if (matches == null) {
           throw new Error(
             `No data available for supplied filter: ${filter}/all/all/matches`
           )
         }
-        const currentTime = Date.now()
+        const currentTime = new Date(Date.now())
 
         return matches.events
-          .filter(
-            m =>
-              m.event.type === 'ET_MATCH' &&
-              m.event.start &&
-              m.event.start > currentTime
-          )
-          .sort((a, b) => a.event.start - b.event.start)
+          .filter(m => {
+            const eventStart = new Date(m.event.start)
+            return (
+              m.event.tags.indexOf('MATCH') !== -1 &&
+              eventStart &&
+              eventStart > currentTime
+            )
+          })
+          .sort((a, b) => new Date(a.event.start) - new Date(b.event.start))
       })
       .then(matches => {
         return matches.length > 0 ? matches : null

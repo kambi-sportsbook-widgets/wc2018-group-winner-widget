@@ -34,7 +34,16 @@ coreLibrary
     const { filter, criterionId } = coreLibrary.args
 
     // set config values from coreLibrary
-    setConfigValues(coreLibrary.config)
+    setConfigValues({
+      ...coreLibrary.config,
+      ...{
+        apiBaseUrls: {
+          v2: 'https://e1-api.kambi.com/offering/api/v2/',
+          v3: 'https://e1-api.kambi.com/offering/api/v3/',
+          v2018: 'https://e1-api.aws.kambicdn.com/offering/v2018/',
+        },
+      },
+    })
 
     return Promise.all([
       kambi.getGroups(filter, criterionId),

@@ -33,7 +33,6 @@ class GroupWidget extends Component {
     super(props)
     this.state = {
       usingDefaultBackground: props.backgroundUrl === DEFAULT_BACKGROUND,
-      selected: 0,
     }
     this.participantsByGroup = props.groups.reduce((groupsObj, group) => {
       groupsObj[group.groupName] = group.betOffers[
@@ -43,7 +42,7 @@ class GroupWidget extends Component {
       })
       return groupsObj
     }, {})
-    this.title = props.title ? props.title : props.groups[0].event.group
+    this.title = props.title ? props.title : props.groups[0].group
     this.tagline = props.tagline
       ? props.tagline
       : props.groups[0].betOffers[0].criterion.label
@@ -146,42 +145,46 @@ class GroupWidget extends Component {
       const groupMembers = this.participantsByGroup[key]
       groupMembers.forEach(member => {
         if (member[0] === nextTeam) {
-          nextTeamStats = { group: key, odds: member[0] }
-        } else if (member[0] === comparable) {
-          comparableStats = { group: key, odds: member[0] }
+          nextTeamStats = { group: key, odds: member[0], idx }
+        }
+        if (member[0] === comparable) {
+          comparableStats = { group: key, odds: member[0], idx }
         }
       })
     })
 
     if (nextTeamStats.group === comparableStats.group) {
-      return false
+      return { hasLowerOdds: true, groupIdx: comparableStats.idx }
     }
 
-    return nextTeamStats.odds > comparableStats.odds
+    return {
+      hasLowerOdds: nextTeamStats.odds > comparableStats.odds,
+      groupIdx: comparableStats.idx,
+    }
   }
 
   /**
    * Holds team's home name of closest tournament's match.
    * @returns {number|null}
    */
-  get nextMatchGroupIdx() {
+  nextMatchGroupIdx = () => {
     let selected = 0
-    if (!this.nextMatches) {
+    if (!this.props.nextMatches || this.props.nextMatches.length < 2) {
       return selected
     }
 
-    const mostRecent = this.props.nextMatches[0].event
+    const mostRecent = this.props.nextMatches[0]
     // const mostRecentGroup = this.getParticipantGroup(mostRecent.homeName)
     // check if multiple games start at same time
     this.props.nextMatches.forEach((match, idx) => {
-      if (idx > 0 && match.event.start === mostRecent.start) {
+      if (match.start === mostRecent.start) {
         // check if in the same group and if not - which has the lowest qualifying odds
-        const matchHasLowerOdds = this.compareAgainstMostRecent(
+        const matchHasLowerOddsWGroupIdx = this.compareAgainstMostRecent(
           mostRecent.homeName,
-          match.event.homeName
+          match.homeName
         )
-        if (matchHasLowerOdds) {
-          selected = idx
+        if (matchHasLowerOddsWGroupIdx.hasLowerOdds) {
+          selected = matchHasLowerOddsWGroupIdx.groupIdx
         }
         return
       }
@@ -197,6 +200,7 @@ class GroupWidget extends Component {
    */
   render() {
     const { groups } = this.props
+    const nextMatchTab = this.nextMatchGroupIdx()
     const renderTab = idx => (
       <div key={idx} className={styles.tab}>
         {groups[idx].groupName}
@@ -224,12 +228,13 @@ class GroupWidget extends Component {
             style={{
               backgroundImage: `url(${this.props.iconUrl})`,
               height: '100%',
+              backgroundSize: 'contain',
             }}
           />
         </IconHeader>
         <TabPagination
           renderTab={renderTab}
-          selected={this.state.selected}
+          selected={nextMatchTab}
           renderTabList={args => {
             return (
               <ScrolledList
@@ -269,7 +274,7 @@ class GroupWidget extends Component {
             })
 
             return (
-              <GroupList key={group.event.id}>
+              <GroupList key={group.id}>
                 {runnerUpOdds.map((item, idx) => {
                   let flagUrl = null
                   const participant = groupParticipants[idx].native
@@ -278,7 +283,7 @@ class GroupWidget extends Component {
                     item,
                     winnerOdds
                   )
-                  if (group.event.groupId === WORLD_CUP_2018_ID) {
+                  if (group.groupId === WORLD_CUP_2018_ID) {
                     flagUrl = this.generateCountryFlagUrl(participantInEnglish)
                   }
                   return (
@@ -288,7 +293,7 @@ class GroupWidget extends Component {
                       flagUrl={flagUrl}
                       outcomes={outcomes}
                       handleClick={() => this.handleListItemClick(group)}
-                      event={group.event}
+                      event={group}
                     />
                   )
                 })}

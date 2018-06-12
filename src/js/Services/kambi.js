@@ -20,12 +20,12 @@ class KambiService {
         // filter out group events with at least one betOffer and add event request to groupEvents
         const filteredEvents = competitions.events
           .filter(event => {
-            const isGroupEvent = event.event.englishName.match(/Group ([A-Z])/)
+            const isGroupEvent = event.englishName.match(/Group ([A-Z])/)
             const hasBetOffers = event.betOffers && event.betOffers.length > 0
             return isGroupEvent && hasBetOffers
           })
           .forEach(event => {
-            groupEvents.push(getEvent(event.event.id))
+            groupEvents.push(getEvent(event.id))
           })
 
         return Promise.all(groupEvents)
@@ -37,7 +37,7 @@ class KambiService {
             groupEvent.betOffers = groupEvent.betOffers.filter(betOffer => {
               return betOffer.criterion.id === criterionId
             })
-            groupEvent.groupName = groupEvent.event.englishName.match(
+            groupEvent.groupName = groupEvent.englishName.match(
               /Group ([A-Z])/
             )[1]
 
@@ -48,7 +48,7 @@ class KambiService {
             return groupEvent
           })
           .sort((a, b) => {
-            return a.event.englishName.localeCompare(b.event.englishName)
+            return a.englishName.localeCompare(b.englishName)
           })
 
         return Promise.resolve(filteredByCriterionId)
@@ -75,14 +75,14 @@ class KambiService {
 
         return matches.events
           .filter(m => {
-            const eventStart = new Date(m.event.start)
+            const eventStart = new Date(m.start)
             return (
-              m.event.tags.indexOf('MATCH') !== -1 &&
+              m.tags.indexOf('MATCH') !== -1 &&
               eventStart &&
               eventStart > currentTime
             )
           })
-          .sort((a, b) => new Date(a.event.start) - new Date(b.event.start))
+          .sort((a, b) => new Date(a.start) - new Date(b.start))
       })
       .then(matches => {
         return matches.length > 0 ? matches : null

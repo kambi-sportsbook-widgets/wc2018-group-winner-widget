@@ -1,114 +1,108 @@
-import kambi from '../../src/js/Services/kambi';
-import { coreLibrary, offeringModule, widgetModule } from 'kambi-widget-core-library';
+import kambi from '../../src/js/Services/kambi'
+import { getEventsByFilter, getEvent } from 'kambi-offering-api-module'
 
-
-jest.mock('kambi-widget-core-library', () => ({
-   coreLibrary: {
-      config: {
-         routeRoot: ''
-      }
-   },
-   offeringModule: {
-      getHighlight: jest.fn(),
-      getEventsByFilter: jest.fn()
-   },
-   widgetModule: {
-      createFilterUrl: jest.fn()
-   }
-}));
-
-const mockHighlightGroup = {pathTermId: 'test'};
+jest.mock('kambi-offering-api-module', () => ({
+  getEvent: jest.fn(),
+  getEventsByFilter: jest.fn(),
+}))
 
 const mockEvent = {
-   event: {
-      type: 'ET_MATCH'
-   }
-};
-
+  event: {
+    type: 'ET_MATCH',
+  },
+}
 
 describe('Kambi get group services', () => {
+  it('returns events correctly', () => {
+    const filter = 'testTournament'
 
-   beforeEach(() => {
-      offeringModule.getEventsByFilter = jest.fn();
-   });
+    getEventsByFilter.mockReturnValueOnce(
+      new Promise(resolve => resolve({ events: [] }))
+    )
+    getEventsByFilter.mockReturnValueOnce(
+      new Promise(resolve =>
+        resolve({
+          events: [
+            mockEvent,
+            Object.assign({}, mockEvent, { event: { type: 'ET_COMPETITION' } }),
+          ],
+        })
+      )
+    )
 
-   it('returns events correctly', () => {
-      const filter = 'testTournament';
+    return kambi.getGroups(filter).then(events => {
+      expect(events).toMatchSnapshot()
+      expect(getEventsByFilter).toHaveBeenCalledTimes(1)
+      expect(getEventsByFilter).toHaveBeenLastCalledWith(
+        'testTournament/all/all/competitions'
+      )
+    })
+  })
 
-      offeringModule.getEventsByFilter.mockReturnValueOnce(new Promise(resolve => resolve({events: []})));
-      offeringModule.getEventsByFilter.mockReturnValueOnce(new Promise(resolve => resolve({events: [
-         mockEvent,
-         Object.assign({}, mockEvent, {event: {type: 'ET_COMPETITION'}})
-      ]})));
+  it('behaves correctly when no events were found', () => {
+    const filter = 'testTournament'
 
-      expect(offeringModule.getEventsByFilter).not.toHaveBeenCalled();
+    getEventsByFilter.mockReturnValueOnce(
+      new Promise(resolve => resolve({ events: [] }))
+    )
 
-      return kambi.getGroups(filter)
-         .then((events) => {
-            expect(events).toMatchSnapshot();
-            expect(offeringModule.getEventsByFilter).toHaveBeenCalledTimes(1);
-            expect(offeringModule.getEventsByFilter).toHaveBeenLastCalledWith('testTournament/all/all/competitions');
-         });
-   });
-
-   it('behaves correctly when no events were found', () => {
-      const filter = 'testTournament';
-
-      offeringModule.getEventsByFilter.mockReturnValueOnce(new Promise(resolve => resolve({events: []})));
-
-      expect(offeringModule.getEventsByFilter).not.toHaveBeenCalled();
-
-      return kambi.getGroups(filter)
-         .then((events) => {
-            throw new Error('Not supposed to reach here');
-         })
-         .catch((err) => {
-            expect(err.message === `No tournament data available for supplied filter: ${filter}/all/all/competitions`);
-         })
-   });
-
-});
-
+    return kambi
+      .getGroups(filter)
+      .then(events => {
+        throw new Error('Not supposed to reach here')
+      })
+      .catch(err => {
+        expect(
+          err.message ===
+            `No tournament data available for supplied filter: ${filter}/all/all/competitions`
+        )
+      })
+  })
+})
 
 describe('Kambi getNextMatches', () => {
+  it('returns events correctly', () => {
+    const filter = 'testTournament'
 
-   beforeEach(() => {
-      offeringModule.getEventsByFilter = jest.fn();
-   });
+    getEventsByFilter.mockReturnValueOnce(
+      new Promise(resolve => resolve({ events: [] }))
+    )
+    getEventsByFilter.mockReturnValueOnce(
+      new Promise(resolve =>
+        resolve({
+          events: [
+            mockEvent,
+            Object.assign({}, mockEvent, { event: { type: 'ET_COMPETITION' } }),
+          ],
+        })
+      )
+    )
 
-   it('returns events correctly', () => {
-      const filter = 'testTournament';
+    return kambi.getNextMatches(filter).then(events => {
+      expect(events).toMatchSnapshot()
+      expect(getEventsByFilter).toHaveBeenLastCalledWith(
+        'testTournament/all/all/matches'
+      )
+    })
+  })
 
-      offeringModule.getEventsByFilter.mockReturnValueOnce(new Promise(resolve => resolve({events: []})));
-      offeringModule.getEventsByFilter.mockReturnValueOnce(new Promise(resolve => resolve({events: [
-         mockEvent,
-         Object.assign({}, mockEvent, {event: {type: 'ET_COMPETITION'}})
-      ]})));
+  it('behaves correctly when no events were found', () => {
+    const filter = 'testTournament'
 
-      expect(offeringModule.getEventsByFilter).not.toHaveBeenCalled();
+    getEventsByFilter.mockReturnValueOnce(
+      new Promise(resolve => resolve({ events: [] }))
+    )
 
-      return kambi.getNextMatches(filter)
-         .then((events) => {
-            expect(events).toMatchSnapshot();
-            expect(offeringModule.getEventsByFilter).toHaveBeenCalledTimes(1);
-            expect(offeringModule.getEventsByFilter).toHaveBeenLastCalledWith('testTournament/all/all/matches');
-         });
-   });
-
-   it('behaves correctly when no events were found', () => {
-      const filter = 'testTournament';
-
-      offeringModule.getEventsByFilter.mockReturnValueOnce(new Promise(resolve => resolve({events: []})));
-
-      expect(offeringModule.getEventsByFilter).not.toHaveBeenCalled();
-
-      return kambi.getNextMatches(filter)
-         .then((events) => {
-            throw new Error('Not supposed to reach here');
-         })
-         .catch((err) => {
-            expect(err.message === `No data available for supplied filter: ${filter}/all/all/matches`);
-         })
-   });
-
-});
+    return kambi
+      .getNextMatches(filter)
+      .then(events => {
+        throw new Error('Not supposed to reach here')
+      })
+      .catch(err => {
+        expect(
+          err.message ===
+            `No data available for supplied filter: ${filter}/all/all/matches`
+        )
+      })
+  })
+})

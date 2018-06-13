@@ -22,12 +22,13 @@ exports[`GroupWidget DOM Rendering renders correctly 1`] = `
       ]
     }
     subtitle="Group Finishing Position"
-    title="World Cup 2018"
+    title={undefined}
   >
     <div
       style={
         Object {
           "backgroundImage": "url(assets/icons/world_cup_2018_inverted.svg)",
+          "backgroundSize": "contain",
           "height": "100%",
         }
       }
@@ -37,7 +38,7 @@ exports[`GroupWidget DOM Rendering renders correctly 1`] = `
     onTabChange={[Function]}
     renderTab={[Function]}
     renderTabList={[Function]}
-    selected={0}
+    selected={1}
   >
     <GroupList />
     <GroupList />
@@ -67,12 +68,13 @@ exports[`GroupWidget DOM Rendering renders correctly with custom backgroundUrl 1
       ]
     }
     subtitle="Group Finishing Position"
-    title="World Cup 2018"
+    title={undefined}
   >
     <div
       style={
         Object {
           "backgroundImage": "url(assets/icons/world_cup_2018_inverted.svg)",
+          "backgroundSize": "contain",
           "height": "100%",
         }
       }
@@ -82,7 +84,7 @@ exports[`GroupWidget DOM Rendering renders correctly with custom backgroundUrl 1
     onTabChange={[Function]}
     renderTab={[Function]}
     renderTabList={[Function]}
-    selected={0}
+    selected={1}
   >
     <GroupList />
     <GroupList />

@@ -18,7 +18,7 @@ exports[`GroupListItem DOM Rendering handles a broken imgLink correctly 1`] = `
       />
     </div>
     <span
-      className="participant"
+      className="participant "
       onClick={[MockFunction]}
     >
       Uruguay
@@ -31,7 +31,13 @@ exports[`GroupListItem DOM Rendering handles a broken imgLink correctly 1`] = `
       betslipDefaultStake={null}
       betslipTrackingName={null}
       betslipUpdateMode={null}
-      event={undefined}
+      event={
+        Object {
+          "event": Object {
+            "type": "ET_MATCH",
+          },
+        }
+      }
       label={false}
       onSelection={null}
       outcome={
@@ -61,7 +67,13 @@ exports[`GroupListItem DOM Rendering handles a broken imgLink correctly 1`] = `
       betslipDefaultStake={null}
       betslipTrackingName={null}
       betslipUpdateMode={null}
-      event={undefined}
+      event={
+        Object {
+          "event": Object {
+            "type": "ET_MATCH",
+          },
+        }
+      }
       label={false}
       onSelection={null}
       outcome={
@@ -105,7 +117,7 @@ exports[`GroupListItem DOM Rendering handles only receiving one outcome per part
       />
     </div>
     <span
-      className="participant"
+      className="participant "
       onClick={[MockFunction]}
     >
       Uruguay
@@ -118,7 +130,13 @@ exports[`GroupListItem DOM Rendering handles only receiving one outcome per part
       betslipDefaultStake={null}
       betslipTrackingName={null}
       betslipUpdateMode={null}
-      event={undefined}
+      event={
+        Object {
+          "event": Object {
+            "type": "ET_MATCH",
+          },
+        }
+      }
       label={false}
       onSelection={null}
       outcome={
@@ -148,7 +166,13 @@ exports[`GroupListItem DOM Rendering handles only receiving one outcome per part
       betslipDefaultStake={null}
       betslipTrackingName={null}
       betslipUpdateMode={null}
-      event={undefined}
+      event={
+        Object {
+          "event": Object {
+            "type": "ET_MATCH",
+          },
+        }
+      }
       label={false}
       onSelection={null}
       outcome={
@@ -192,7 +216,7 @@ exports[`GroupListItem DOM Rendering renders correctly 1`] = `
       />
     </div>
     <span
-      className="participant"
+      className="participant "
       onClick={[MockFunction]}
     >
       Uruguay
@@ -205,7 +229,13 @@ exports[`GroupListItem DOM Rendering renders correctly 1`] = `
       betslipDefaultStake={null}
       betslipTrackingName={null}
       betslipUpdateMode={null}
-      event={undefined}
+      event={
+        Object {
+          "event": Object {
+            "type": "ET_MATCH",
+          },
+        }
+      }
       label={false}
       onSelection={null}
       outcome={
@@ -235,7 +265,13 @@ exports[`GroupListItem DOM Rendering renders correctly 1`] = `
       betslipDefaultStake={null}
       betslipTrackingName={null}
       betslipUpdateMode={null}
-      event={undefined}
+      event={
+        Object {
+          "event": Object {
+            "type": "ET_MATCH",
+          },
+        }
+      }
       label={false}
       onSelection={null}
       outcome={
@@ -269,7 +305,7 @@ exports[`GroupListItem DOM Rendering renders correctly withouth flagUrl 1`] = `
     className="participantWrapper"
   >
     <span
-      className="participant"
+      className="participant "
       onClick={[MockFunction]}
     >
       Uruguay
@@ -282,7 +318,13 @@ exports[`GroupListItem DOM Rendering renders correctly withouth flagUrl 1`] = `
       betslipDefaultStake={null}
       betslipTrackingName={null}
       betslipUpdateMode={null}
-      event={undefined}
+      event={
+        Object {
+          "event": Object {
+            "type": "ET_MATCH",
+          },
+        }
+      }
       label={false}
       onSelection={null}
       outcome={
@@ -312,7 +354,13 @@ exports[`GroupListItem DOM Rendering renders correctly withouth flagUrl 1`] = `
       betslipDefaultStake={null}
       betslipTrackingName={null}
       betslipUpdateMode={null}
-      event={undefined}
+      event={
+        Object {
+          "event": Object {
+            "type": "ET_MATCH",
+          },
+        }
+      }
       label={false}
       onSelection={null}
       outcome={

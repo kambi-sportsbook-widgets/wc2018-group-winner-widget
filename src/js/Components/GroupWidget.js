@@ -133,6 +133,19 @@ class GroupWidget extends Component {
     return outcomes
   }
 
+  getNextMatchGroup = team => {
+    let nextMatchGroupIdx = 0 // fallback to first tab
+    Object.keys(this.participantsByGroup).forEach((key, idx) => {
+      const groupMembers = this.participantsByGroup[key]
+      groupMembers.forEach(member => {
+        if (team === member[0]) {
+          nextMatchGroupIdx = idx
+        }
+      })
+    })
+    return nextMatchGroupIdx
+  }
+
   /**
    *
    * @param {string} nextTeam - most recent homeName from this.nextMatches
@@ -168,16 +181,17 @@ class GroupWidget extends Component {
    * @returns {number|null}
    */
   nextMatchGroupIdx = () => {
-    let selected = 0
-    if (!this.props.nextMatches || this.props.nextMatches.length < 2) {
-      return selected
+    const { nextMatches } = this.props
+    if (!nextMatches || nextMatches.length < 2) {
+      return 0
     }
 
-    const mostRecent = this.props.nextMatches[0]
-    // const mostRecentGroup = this.getParticipantGroup(mostRecent.homeName)
+    const mostRecent = nextMatches[0]
+    let selected = this.getNextMatchGroup(mostRecent.homeName)
+
     // check if multiple games start at same time
-    this.props.nextMatches.forEach((match, idx) => {
-      if (match.start === mostRecent.start) {
+    nextMatches.forEach((match, idx) => {
+      if (new Date(match.start) === new Date(mostRecent.start)) {
         // check if in the same group and if not - which has the lowest qualifying odds
         const matchHasLowerOddsWGroupIdx = this.compareAgainstMostRecent(
           mostRecent.homeName,

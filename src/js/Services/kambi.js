@@ -34,7 +34,7 @@ class KambiService {
         // filter betOffers by criterionId and sort groups by name
 
         const filteredByCriterionId = groupEvents
-          .map(groupEvent => {
+          .filter(groupEvent => {
             groupEvent.betOffers = groupEvent.betOffers.filter(betOffer => {
               return betOffer.criterion.id === criterionId
             })
@@ -42,11 +42,7 @@ class KambiService {
               /Group ([A-Z])/
             )[1]
 
-            if (groupEvent.betOffers.length < 1 || !groupEvent.groupName) {
-              throw new Error('Could not find matching betoffers or group name')
-              return
-            }
-            return groupEvent
+            return groupEvent.betOffers.length > 0 && groupEvent.groupName
           })
           .sort((a, b) => {
             return a.englishName.localeCompare(b.englishName)

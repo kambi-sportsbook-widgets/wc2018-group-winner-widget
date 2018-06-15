@@ -122,11 +122,16 @@ class GroupWidget extends Component {
    * runnerUp { shape } runnerUp to be matched
    * winnerOdds { array } array of winner outcomes to match against
    */
-  matchOutcomesByParticipant(runnerUp, winnerOdds) {
-    let outcomes = [null, runnerUp]
+  matchOutcomesByParticipant(winnerOdds, runnerUp, participant) {
+    let outcomes = [null, null]
     winnerOdds.forEach(item => {
-      if (runnerUp.participantId === item.participantId) {
-        outcomes = [item, runnerUp]
+      if (participant.english === item.englishLabel) {
+        outcomes[0] = item
+      }
+    })
+    runnerUp.forEach(item => {
+      if (participant.english === item.englishLabel) {
+        outcomes[1] = item
       }
     })
 
@@ -280,30 +285,41 @@ class GroupWidget extends Component {
             })
 
             // get participant names from runnerUpOdds as it will contain more participants longer
-            const groupParticipants = runnerUpOdds.map(participant => {
-              return {
-                english: participant.englishLabel,
-                native: participant.label,
-              }
-            })
+            let groupParticipants
+            if (runnerUpOdds.length === 0) {
+              groupParticipants = winnerOdds.map(participant => {
+                return {
+                  english: participant.englishLabel,
+                  native: participant.label,
+                }
+              })
+            } else {
+              groupParticipants = runnerUpOdds.map(participant => {
+                return {
+                  english: participant.englishLabel,
+                  native: participant.label,
+                }
+              })
+            }
 
             return (
               <GroupList key={group.id}>
-                {runnerUpOdds.map((item, idx) => {
+                {groupParticipants.map((participant, idx) => {
                   let flagUrl = null
-                  const participant = groupParticipants[idx].native
-                  const participantInEnglish = groupParticipants[idx].english
+                  const participantNative = participant.native
+                  const participantInEnglish = participant.english
                   const outcomes = this.matchOutcomesByParticipant(
-                    item,
-                    winnerOdds
+                    winnerOdds,
+                    runnerUpOdds,
+                    participant
                   )
                   if (group.groupId === WORLD_CUP_2018_ID) {
                     flagUrl = this.generateCountryFlagUrl(participantInEnglish)
                   }
                   return (
                     <GroupListItem
-                      key={participant}
-                      participant={participant}
+                      key={participantNative}
+                      participant={participantNative}
                       flagUrl={flagUrl}
                       outcomes={outcomes}
                       handleClick={() => this.handleListItemClick(group)}

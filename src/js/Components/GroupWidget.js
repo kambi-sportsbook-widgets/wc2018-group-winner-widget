@@ -70,10 +70,10 @@ class GroupWidget extends Component {
    * Adds item to betslip
    */
   handleListItemClick(event) {
-    if (event.event.openForLiveBetting === true) {
-      widgetModule.navigateToLiveEvent(event.event.id)
+    if (event.openForLiveBetting === true) {
+      widgetModule.navigateToLiveEvent(event.id)
     } else {
-      widgetModule.navigateToEvent(event.event.id)
+      widgetModule.navigateToEvent(event.id)
     }
   }
 

@@ -46,21 +46,25 @@ class GroupListItem extends React.Component {
             {participant}
           </span>
         </div>
-        {outcomes.map(
-          outcome =>
-            outcome ? (
-              <div className={styles.button} key={outcome.id}>
-                <OutcomeButton
-                  outcome={outcome}
-                  label={false}
-                  outlineStyle={true}
-                  event={event}
-                />
-              </div>
-            ) : (
-              <div className={styles.emptyButton} />
-            )
-        )}
+        {outcomes
+          .filter(outcome => {
+            return outcome && outcome.status !== 'SUSPENDED'
+          })
+          .map(
+            (outcome, idx) =>
+              outcome ? (
+                <div className={styles.button} key={idx}>
+                  <OutcomeButton
+                    outcome={outcome}
+                    label={false}
+                    outlineStyle={true}
+                    event={event}
+                  />
+                </div>
+              ) : (
+                <div className={styles.emptyButton} key={idx} />
+              )
+          )}
       </li>
     )
   }

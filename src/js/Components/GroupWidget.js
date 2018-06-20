@@ -101,6 +101,14 @@ class GroupWidget extends Component {
 
         if (p1Idx === -1 && p2Idx === -1) {
           // neither exist in the refArray
+          if (!a.odds) {
+            return 1
+          }
+
+          if (!b.odds) {
+            return -1
+          }
+
           return a.odds > b.odds
         } else if (p1Idx === -1) {
           // p1 doesn't exist in refArray
@@ -115,7 +123,17 @@ class GroupWidget extends Component {
       })
     }
 
-    return outcomes.sort((a, b) => a.odds > b.odds)
+    return outcomes.sort((a, b) => {
+      if (!a.odds) {
+        return 1
+      }
+
+      if (!b.odds) {
+        return -1
+      }
+
+      return a.odds > b.odds
+    })
   }
 
   /**

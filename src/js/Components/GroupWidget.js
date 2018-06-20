@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { widgetModule } from 'kambi-widget-core-library'
+import uniqBy from 'lodash.uniqby'
 import {
   ScrolledList,
   TabPagination,
@@ -285,16 +286,13 @@ class GroupWidget extends Component {
             })
 
             // get participant names from runnerUpOdds as it will contain more participants longer
-            let groupParticipants
-            if (runnerUpOdds.length === 0) {
-              groupParticipants = winnerOdds.map(participant => {
-                return {
-                  english: participant.englishLabel,
-                  native: participant.label,
-                }
-              })
-            } else {
-              groupParticipants = runnerUpOdds.map(participant => {
+            let groupParticipants = []
+            const uniqueParticipants = uniqBy(
+              [...winnerOdds, ...runnerUpOdds],
+              'participant'
+            )
+            if (uniqueParticipants.length !== 0) {
+              groupParticipants = uniqueParticipants.map(participant => {
                 return {
                   english: participant.englishLabel,
                   native: participant.label,

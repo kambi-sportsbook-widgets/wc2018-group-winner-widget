@@ -36,7 +36,8 @@
   "dependencies": {
     "kambi-offering-api-module": "^3.0.0",
     "kambi-widget-components": "^1.21.9",
-    "kambi-widget-core-library": "^4.11.0"
+    "kambi-widget-core-library": "^4.11.0",
+    "lodash.uniqby": "^4.7.0"
   },
   "devDependencies": {
     "lint-staged": "^6.1.0",

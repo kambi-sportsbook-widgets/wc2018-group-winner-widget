@@ -32,7 +32,6 @@ class KambiService {
       })
       .then(groupEvents => {
         // filter betOffers by criterionId and sort groups by name
-
         const filteredByCriterionId = groupEvents
           .filter(groupEvent => {
             groupEvent.betOffers = groupEvent.betOffers.filter(betOffer => {

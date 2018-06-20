@@ -47,9 +47,9 @@ class GroupListItem extends React.Component {
           </span>
         </div>
         {outcomes.map(
-          outcome =>
-            outcome ? (
-              <div className={styles.button} key={outcome.id}>
+          (outcome, idx) =>
+            outcome && outcome.status.toLowerCase() !== 'suspended' ? (
+              <div className={styles.button} key={idx}>
                 <OutcomeButton
                   outcome={outcome}
                   label={false}
@@ -58,7 +58,7 @@ class GroupListItem extends React.Component {
                 />
               </div>
             ) : (
-              <div className={styles.emptyButton} />
+              <div className={styles.emptyButton} key={idx} />
             )
         )}
       </li>

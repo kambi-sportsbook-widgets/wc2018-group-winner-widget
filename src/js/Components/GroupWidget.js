@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { widgetModule } from 'kambi-widget-core-library'
+import uniqBy from 'lodash.uniqby'
 import {
   ScrolledList,
   TabPagination,
@@ -70,10 +71,10 @@ class GroupWidget extends Component {
    * Adds item to betslip
    */
   handleListItemClick(event) {
-    if (event.event.openForLiveBetting === true) {
-      widgetModule.navigateToLiveEvent(event.event.id)
+    if (event.openForLiveBetting === true) {
+      widgetModule.navigateToLiveEvent(event.id)
     } else {
-      widgetModule.navigateToEvent(event.event.id)
+      widgetModule.navigateToEvent(event.id)
     }
   }
 
@@ -285,16 +286,13 @@ class GroupWidget extends Component {
             })
 
             // get participant names from runnerUpOdds as it will contain more participants longer
-            let groupParticipants
-            if (runnerUpOdds.length === 0) {
-              groupParticipants = winnerOdds.map(participant => {
-                return {
-                  english: participant.englishLabel,
-                  native: participant.label,
-                }
-              })
-            } else {
-              groupParticipants = runnerUpOdds.map(participant => {
+            let groupParticipants = []
+            const uniqueParticipants = uniqBy(
+              [...winnerOdds, ...runnerUpOdds],
+              'participant'
+            )
+            if (uniqueParticipants.length !== 0) {
+              groupParticipants = uniqueParticipants.map(participant => {
                 return {
                   english: participant.englishLabel,
                   native: participant.label,
